@@ -1,0 +1,64 @@
+body {
+    font-family: 'HelveticaNowText-Bold', sans-serif;
+    margin: 0;
+    color: #000000;
+}
+
+@font-face {
+    font-family: 'Floodplain';
+    src: url('fontes/floodplain-demo (1).otf') format('opentype');
+}
+
+.menu
+{
+   background-color: rgb(1, 1, 26);
+   height: 80px;
+   display: flex;
+   align-items: center;
+   padding: 0 20px;
+}   
+
+.Logo
+{
+    font-family: 'Floodplain', sans-serif;
+    font-size: 90px;
+    letter-spacing: -1px;
+    color: #fcfaed;
+}
+
+.menu-links
+{
+    margin-left: auto;
+}
+
+.menu-links a
+{
+    text-decoration: none;
+    color: #fcfaed;
+    margin-left: 20px;
+}   
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(1, 1, 26); 
+  min-height: 100vh;      
+  display: flex;
+  flex-direction: column;
+}
+.sobre-nos {
+  color: #fcfaed;
+  text-align: center;
+  flex: 1;
+}
+
+.rodape {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(1, 1, 26);
+  color: rgb(250, 250, 250);
+  padding: 20px;
+  text-align: center;
+}

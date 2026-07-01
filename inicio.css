@@ -1,0 +1,314 @@
+/* --- CONFIGURAÇÕES GERAIS --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #121212;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* --- HEADER / MENU --- */
+.topo-site {
+    background-color: #1a1a1a;
+    border-bottom: 2px solid #2d2d2d;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.Logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ff3e3e;
+}
+
+.menu-links a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.menu-links a:hover {
+    color: #ff3e3e;
+}
+
+/* --- CONTEÚDO PRINCIPAL --- */
+main {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- CARROSSEL --- */
+.carrossel-container {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden; /* Esconde os cards que ficam fora da tela */
+    padding: 10px 0;
+}
+
+.carrossel-track {
+    display: flex;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+}
+
+/* CARDS DOS TÊNIS */
+.tenis-card {
+    min-width: 300px;
+    max-width: 300px;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    margin-right: 20px; /* Espaçamento entre os cards */
+    overflow: hidden;
+    border: 1px solid #2d2d2d;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.tenis-card:hover {
+    transform: translateY(-5px);
+    border-color: #ff3e3e;
+}
+
+.tenis-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover; /* Faz a imagem preencher o espaço sem distorcer */
+    background-color: #fff; /* Fundo branco para destacar imagens transparentes */
+}
+
+.tenis-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.tenis-info h4 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+.tenis-preco {
+    display: block;
+    font-size: 1.2rem;
+    color: #ff3e3e;
+    font-weight: bold;
+}
+
+/* BOTÕES DO CARROSSEL */
+.btn-carrossel {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 62, 62, 0.8);
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-carrossel:hover {
+    background-color: rgb(255, 62, 62);
+}
+
+.btn-prev { left: 10px; }
+.btn-next { right: 10px; }
+
+/* --- SEÇÃO DE MARCAS/LINKS --- */
+.marcas-links {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.marcas-links h3 { margin-bottom: 10px; }
+.marcas-links h4 { color: #aaaaaa; margin-bottom: 20px; }
+
+.marcas-links ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.marcas-links a {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #1a1a1a;
+    padding: 10px 25px;
+    border-radius: 20px;
+    border: 1px solid #2d2d2d;
+    transition: all 0.3s ease;
+}
+
+.marcas-links a:hover {
+    background-color: #ff3e3e;
+    border-color: #ff3e3e;
+}
+
+/* --- FOOTER --- */
+.rodape {
+    background-color: #0a0a0a;
+    border-top: 2px solid #1a1a1a;
+    padding: 30px 20px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.footer-conteudo h3 {
+    color: #ff3e3e;
+    margin-bottom: 10px;
+}
+
+.footer-conteudo p {
+    color: #888888;
+    font-size: 0.9rem;
+    margin: 5px 0;
+}
+
+/* ==========================================================================
+   SEÇÃO SOBRE NÓS (INCORPORADA NA HOME)
+   ========================================================================== */
+
+.sobre-nos-home {
+    background-color: #121212; /* Fundo levemente mais claro que o body para dar contraste */
+    padding: 100px 24px;
+    border-top: 1px solid #1f1f1f;
+    border-bottom: 1px solid #1f1f1f;
+    margin: 40px 0;
+}
+
+.sobre-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr; /* Divide a tela entre imagem e texto */
+    gap: 60px;
+    align-items: center;
+}
+
+/* Ajuste para telas menores (Tablets e Celulares) */
+@media (max-width: 968px) {
+    .sobre-container {
+        grid-template-columns: 1fr; /* Transforma em uma única coluna */
+        gap: 40px;
+    }
+}
+
+/* Estilização da Imagem */
+.sobre-imagem {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #2d2d2d;
+}
+
+.sobre-imagem img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.sobre-imagem:hover img {
+    transform: scale(1.03); /* Efeito sutil ao passar o mouse */
+}
+
+/* Estilização do Texto */
+.sobre-conteudo-texto .subtitulo-sobre {
+    color: #ff3e3e;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.sobre-conteudo-texto h2 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+}
+
+.sobre-conteudo-texto p {
+    color: #aaaaaa;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.sobre-conteudo-texto strong {
+    color: #ffffff;
+}
+
+/* Pequenos Selos de Diferenciais */
+.sobre-selos {
+    display: flex;
+    gap: 30px;
+    margin-top: 35px;
+    border-top: 1px solid #1f1f1f;
+    padding-top: 25px;
+}
+
+.selo-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.selo-icone {
+    background-color: #0b0b0b;
+    border: 1px solid #2d2d2d;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.selo-item p {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 0;
+}
