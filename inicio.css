@@ -312,3 +312,170 @@ h1 {
     font-size: 0.95rem;
     margin: 0;
 }
+
+btn-add-carrinho {
+    background-color: #ff3e3e;
+    color: #ffffff;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.btn-add-carrinho:hover {
+    background-color: #e02f2f;
+}
+
+.btn-add-carrinho:active {
+    transform: scale(0.97);
+}
+
+/* --- ESTILOS DA PÁGINA DO CARRINHO --- */
+.carrinho-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.carrinho-wrapper {
+    display: flex;
+    gap: 30px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.lista-carrinho {
+    flex: 2;
+    min-width: 300px;
+}
+
+.item-carrinho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1a1a1a;
+    border: 1px solid #2d2d2d;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+
+.item-carrinho img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    background-color: #fff;
+    border-radius: 6px;
+}
+
+.item-detalhes h4 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.item-preco {
+    color: #ff3e3e;
+    font-weight: bold;
+}
+
+/* Botões de quantidade (+ e -) */
+.item-qtd {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #121212;
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: 1px solid #2d2d2d;
+}
+
+.item-qtd button {
+    background: none;
+    border: none;
+    color: #ff3e3e;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-remover {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+/* Resumo lateral do Pedido */
+.resumo-carrinho {
+    flex: 1;
+    min-width: 280px;
+    background-color: #1a1a1a;
+    border: 1px solid #2d2d2d;
+    padding: 20px;
+    border-radius: 8px;
+    height: fit-content;
+}
+
+.resumo-carrinho h3 {
+    margin-bottom: 20px;
+    color: #ff3e3e;
+    text-transform: uppercase;
+}
+
+.resumo-linha {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    color: #dddddd;
+}
+
+.frete-gratis {
+    color: #00ff66;
+    font-weight: bold;
+}
+
+.resumo-carrinho hr {
+    border: 0;
+    border-top: 1px solid #2d2d2d;
+    margin: 15px 0;
+}
+
+.resumo-linha.total {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.btn-finalizar {
+    width: 100%;
+    background-color: #ff3e3e;
+    color: #ffffff;
+    border: none;
+    padding: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 6px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-finalizar:hover {
+    background-color: #e02f2f;
+}
+
+.carrinho-vazio {
+    color: #aaaaaa;
+    font-size: 1.1rem;
+}
+
+.carrinho-vazio a {
+    color: #ff3e3e;
+    text-decoration: none;
+}
