@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho | Culture.CoO</title>
+    <link rel="stylesheet" href="inicio.css">
+</head>
+<body>
+
+    <header class="topo-site">
+        <nav class="menu">
+            <span class="Logo">Culture.coO</span>
+            <div class="menu-links">
+                <a href="inicio.html">Início</a>
+                <a href="contato.html">Contato</a>
+                <a href="carrinho.html" class="active">Carrinho</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="carrinho-container">
+        <h1>Seu Carrinho</h1>
+
+        <div class="carrinho-wrapper">
+            <!-- Lista onde os produtos salvos serão renderizados -->
+            <div id="lista-carrinho" class="lista-carrinho">
+                <!-- Se estiver vazio, o JS vai inserir uma mensagem aqui -->
+            </div>
+
+            <!-- Resumo do Pedido -->
+            <div class="resumo-carrinho">
+                <h3>Resumo do Pedido</h3>
+                <div class="resumo-linha">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">R$ 0,00</span>
+                </div>
+                <div class="resumo-linha">
+                    <span>Frete:</span>
+                    <span class="frete-gratis">Grátis</span>
+                </div>
+                <hr>
+                <div class="resumo-linha total">
+                    <span>Total:</span>
+                    <span id="total-pedido">R$ 0,00</span>
+                </div>
+                <button class="btn-finalizar" onclick="finalizarCompra()">Finalizar Compra</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function carregarCarrinho() {
+            let carrinho = JSON.parse(localStorage.getItem('carrinhoCulture')) || [];
+            let container = document.getElementById('lista-carrinho');
+            let subtotal = 0;
+
+            if (carrinho.length === 0) {
+                container.innerHTML = `<p class="carrinho-vazio">Seu carrinho está vazio. <a href="inicio.html">Voltar para a loja.</a></p>`;
+                document.getElementById('subtotal').innerText = 'R$ 0,00';
+                document.getElementById('total-pedido').innerText = 'R$ 0,00';
+                return;
+            }
+
+            container.innerHTML = ''; // Limpa a lista
+
+            carrinho.forEach((item, index) => {
+                let totalItem = item.preco * item.quantidade;
+                subtotal += totalItem;
+
+                container.innerHTML += `
+                    <div class="item-carrinho">
+                        <img src="${item.imagem}" alt="${item.nome}">
+                        <div class="item-detalhes">
+                            <h4>${item.nome}</h4>
+                            <span class="item-preco">R$ ${item.preco.toFixed(2).replace('.', ',')}</span>
+                        </div>
+                        <div class="item-qtd">
+                            <button onclick="alterarQtd(${index}, -1)">-</button>
+                            <span>${item.quantidade}</span>
+                            <button onclick="alterarQtd(${index}, 1)">+</button>
+                        </div>
+                        <button class="btn-remover" onclick="removerItem(${index})">🗑️</button>
+                    </div>
+                `;
+            });
+
+            document.getElementById('subtotal').innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+            document.getElementById('total-pedido').innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+        }
+
+        function alterarQtd(index, mudanca) {
+            let carrinho = JSON.parse(localStorage.getItem('carrinhoCulture'));
+            carrinho[index].quantidade += mudanca;
+
+            if (carrinho[index].quantidade <= 0) {
+                carrinho.splice(index, 1);
+            }
+
+            localStorage.setItem('carrinhoCulture', JSON.stringify(carrinho));
+            carregarCarrinho();
+        }
+
+        function removerItem(index) {
+            let carrinho = JSON.parse(localStorage.getItem('carrinhoCulture'));
+            carrinho.splice(index, 1);
+            localStorage.setItem('carrinhoCulture', JSON.stringify(carrinho));
+            carregarCarrinho();
+        }
+
+        function finalizarCompra() {
+            let carrinho = JSON.parse(localStorage.getItem('carrinhoCulture')) || [];
+            if(carrinho.length === 0) {
+                alert('Seu carrinho está vazio!');
+                return;
+            }
+            alert('Pedido realizado com sucesso! Obrigado por comprar na Culture.coO.');
+            localStorage.removeItem('carrinhoCulture');
+            carregarCarrinho();
+        }
+
+        // Carrega os itens ao abrir a página
+        window.onload = carregarCarrinho;
+    </script>
+</body>
+</html>
