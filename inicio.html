@@ -326,5 +326,34 @@
             track.style.transform = `translateX(0px)`;
         });
     </script>
+
+  <script>
+    function adicionarAoCarrinho(nome, preco, imagem) {
+    // Busca os itens do carrinho salvos ou cria uma lista vazia
+    let carrinho = JSON.parse(localStorage.getItem('carrinhoCulture')) || [];
+
+    // Verifica se o item já está no carrinho
+    let itemExistente = carrinho.find(item => item.nome === nome);
+
+    if (itemExistente) {
+        itemExistente.quantidade += 1;
+    } else {
+        carrinho.push({
+            nome: nome,
+            preco: preco,
+            imagem: imagem,
+            quantidade: 1
+        });
+    }
+
+    // Salva a lista atualizada de volta no navegador
+    localStorage.setItem('carrinhoCulture', JSON.stringify(carrinho));
+
+    // Feedback visual para o usuário
+    alert(`${nome} foi adicionado ao seu carrinho!`);
+}
+    </script>
+
+    
 </body>
 </html>
