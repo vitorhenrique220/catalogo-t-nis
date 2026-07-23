@@ -8,16 +8,36 @@
 </head>
 <body>
 
-    <header class="topo-site">
-        <nav class="menu">
-            <span class="Logo">Culture.coO</span>
-            <div class="menu-links">
-                <a href="inicio.html">Início</a>
-                <a href="contato.html">Contato</a>
-                <a href="carrinho.html">Carrinho</a>
-            </div>
-        </nav>
-    </header>
+<header class="topo-site">
+    
+    <nav class="menu-container">
+    <a href="inicio.html" class="logo">Culture.coO</a>
+
+    <ul class="menu-links">
+        <li><a href="inicio.html">Início</a></li>
+        <li><a href="contato.html">Contato</a></li>
+        <li><a href="tenis.html">Tênis</a></li>
+        <li><a href="#">Blusas e Jaquetas</a></li>
+        <li><a href="#">Camisas</a></li>
+        <li><a href="#">Calças e Shorts</a></li>
+    </ul>
+
+    <div class="menu-iconos">
+        <button class="icon-btn" title="Buscar" onclick="abrirPesquisa()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        
+        <a href="#" class="icon-btn" title="Minha Conta">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+
+        <a href="carrinho.html" class="icon-btn cart-btn" title="Carrinho">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            <span id="contador-carrinho" class="cart-badge">0</span>
+        </a>
+    </div>
+</nav>
+</header>
 
     <main>
         <h1>Nossos Produtos</h1>
@@ -212,16 +232,7 @@
         </div>
     </main>
 
-    <section class="marcas-links">
-        <h3>Esses são alguns dos produtos que oferecemos.</h3>
-        <h4>Para mais informações sobre os produtos, clique nos links abaixo de cada peça:</h4>
-        <ul>
-            <li><a href="tenis.html" target="_blank">Tênis</a></li>
-            <li><a href="camisas.html" target="_blank">Camisas</a></li>
-            <li><a href="blusas-jaquetas.html" target="_blank">Blusas e Jaquetas</a></li>
-            <li><a href="shorts-calcas.html" target="_blank">Shorts e Calças</a></li>
-        </ul>
-    </section>
+    
 
     <section class="sobre-nos-home">
         <div class="sobre-container">
@@ -320,6 +331,29 @@
             localStorage.setItem('carrinhoCulture', JSON.stringify(carrinho));
             alert(`${nome} foi adicionado ao seu carrinho!`);
         }
+        </script>
+        
+        <script>
+       // Exemplo simples para a ação de pesquisa
+function abrirPesquisa() {
+    let termo = prompt("O que você está procurando?");
+    if (termo) {
+        alert(`Buscando por: ${termo}`);
+    }
+}
+     
+function atualizarContadorHeader() {
+    let carrinho = JSON.parse(localStorage.getItem('carrinhoCulture')) || [];
+    let totalItens = carrinho.reduce((acc, item) => acc + (item.quantidade || 1), 0);
+    
+    let elContador = document.getElementById('contador-carrinho');
+    if (elContador) {
+        elContador.innerText = totalItens;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', atualizarContadorHeader);
+
     </script>
 
 </body>
