@@ -1,6 +1,4 @@
-/* ==========================================================================
-   1. ESTILOS GLOBAIS E RESET (Garante o tema escuro em todo o site)
-   ========================================================================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -9,13 +7,11 @@
 }
 
 body {
-    background-color: #0b0b0b !important; /* Fundo escuro fixo */
-    color: #ffffff !important;           /* Texto branco por padrão */
+    background-color: #0b0b0b !important; 
+    color: #ffffff !important;          
 }
 
-/* ==========================================================================
-   2. CABEÇALHO / HEADER (Igual ao da Home)
-   ========================================================================== */
+
 .topo-site {
     background-color: #121212;
     border-bottom: 1px solid #1f1f1f;
@@ -58,9 +54,7 @@ body {
     color: #ff3e3e;
 }
 
-/* ==========================================================================
-   3. PÁGINA DE CONTATO & CARDS (Correção de cores dos textos)
-   ========================================================================== */
+
 .contato-principal {
     max-width: 1200px;
     margin: 60px auto 100px;
@@ -92,7 +86,7 @@ body {
 }
 
 .contato-header p {
-    color: #aaaaaa; /* Texto cinza claro para ler no fundo escuro */
+    color: #aaaaaa; 
     max-width: 600px;
     margin: 0 auto;
     font-size: 1rem;
@@ -113,7 +107,7 @@ body {
     }
 }
 
-/* CARD DE SUPORTE */
+
 .card-suporte-item {
     background-color: #121212;
     border: 1px solid #1f1f1f;
@@ -152,10 +146,10 @@ body {
     margin-bottom: 10px;
 }
 
-/* Corrigindo a visibilidade dos dados (Telefone, Email, Horários) */
+
 .destaque-card,
 .info-texto p {
-    color: #ff3e3e !important; /* Destaque em vermelho brilhante */
+    color: #ff3e3e !important; 
     font-weight: 700;
     font-size: 1.05rem;
     margin-bottom: 6px;
@@ -163,7 +157,7 @@ body {
 
 .subtexto-card,
 .info-texto span {
-    color: #888888 !important; /* Cinza legível para informações secundárias */
+    color: #888888 !important; 
     font-size: 0.85rem;
     display: block;
 }
