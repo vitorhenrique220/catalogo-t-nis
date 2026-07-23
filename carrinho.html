@@ -23,12 +23,9 @@
         <h1>Seu Carrinho</h1>
 
         <div class="carrinho-wrapper">
-            <!-- Lista onde os produtos salvos serão renderizados -->
             <div id="lista-carrinho" class="lista-carrinho">
-                <!-- Se estiver vazio, o JS vai inserir uma mensagem aqui -->
-            </div>
+                </div>
 
-            <!-- Resumo do Pedido -->
             <div class="resumo-carrinho">
                 <h3>Resumo do Pedido</h3>
                 <div class="resumo-linha">
@@ -50,6 +47,20 @@
     </main>
 
     <script>
+    
+        function converterPrecoParaNumero(preco) {
+            if (typeof preco === 'number') return preco;
+            if (!preco) return 0;
+            
+            let limpo = preco.toString().replace('R$', '').replace(/\./g, '').replace(',', '.').trim();
+            return parseFloat(limpo) || 0;
+        }
+
+    
+        function formatarMoeda(valor) {
+            return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+
         function carregarCarrinho() {
             let carrinho = JSON.parse(localStorage.getItem('carrinhoCulture')) || [];
             let container = document.getElementById('lista-carrinho');
@@ -62,18 +73,19 @@
                 return;
             }
 
-            container.innerHTML = ''; // Limpa a lista
+            container.innerHTML = ''; 
 
             carrinho.forEach((item, index) => {
-                let totalItem = item.preco * item.quantidade;
+                let precoUnitario = converterPrecoParaNumero(item.preco);
+                let totalItem = precoUnitario * item.quantidade;
                 subtotal += totalItem;
 
                 container.innerHTML += `
                     <div class="item-carrinho">
-                        <img src="${item.imagem}" alt="${item.nome}">
+                        <img src="${item.imagem}" alt="${item.nome}" width="80">
                         <div class="item-detalhes">
                             <h4>${item.nome}</h4>
-                            <span class="item-preco">R$ ${item.preco.toFixed(2).replace('.', ',')}</span>
+                            <span class="item-preco">${formatarMoeda(precoUnitario)}</span>
                         </div>
                         <div class="item-qtd">
                             <button onclick="alterarQtd(${index}, -1)">-</button>
@@ -85,12 +97,14 @@
                 `;
             });
 
-            document.getElementById('subtotal').innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
-            document.getElementById('total-pedido').innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+            document.getElementById('subtotal').innerText = formatarMoeda(subtotal);
+            document.getElementById('total-pedido').innerText = formatarMoeda(subtotal);
         }
 
         function alterarQtd(index, mudanca) {
-            let carrinho = JSON.parse(localStorage.getItem('carrinhoCulture'));
+            let carrinho = JSON.parse(localStorage.getItem('carrinhoCulture')) || [];
+            if (!carrinho[index]) return;
+
             carrinho[index].quantidade += mudanca;
 
             if (carrinho[index].quantidade <= 0) {
@@ -102,7 +116,7 @@
         }
 
         function removerItem(index) {
-            let carrinho = JSON.parse(localStorage.getItem('carrinhoCulture'));
+            let carrinho = JSON.parse(localStorage.getItem('carrinhoCulture')) || [];
             carrinho.splice(index, 1);
             localStorage.setItem('carrinhoCulture', JSON.stringify(carrinho));
             carregarCarrinho();
@@ -110,7 +124,7 @@
 
         function finalizarCompra() {
             let carrinho = JSON.parse(localStorage.getItem('carrinhoCulture')) || [];
-            if(carrinho.length === 0) {
+            if (carrinho.length === 0) {
                 alert('Seu carrinho está vazio!');
                 return;
             }
@@ -119,8 +133,8 @@
             carregarCarrinho();
         }
 
-        // Carrega os itens ao abrir a página
-        window.onload = carregarCarrinho;
+       
+        document.addEventListener('DOMContentLoaded', carregarCarrinho);
     </script>
 </body>
 </html>
