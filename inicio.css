@@ -1,4 +1,4 @@
-/* --- CONFIGURAÇÕES GERAIS --- */
+
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +12,7 @@ body {
     overflow-x: hidden;
 }
 
-/* --- HEADER / MENU --- */
+
 .topo-site {
     background-color: #1a1a1a;
     border-bottom: 2px solid #2d2d2d;
@@ -50,7 +50,7 @@ body {
     color: #ff3e3e;
 }
 
-/* --- CONTEÚDO PRINCIPAL --- */
+
 main {
     max-width: 1200px;
     margin: 40px auto;
@@ -65,12 +65,12 @@ h1 {
     letter-spacing: 1px;
 }
 
-/* --- CARROSSEL --- */
+
 .carrossel-container {
     position: relative;
     max-width: 100%;
     margin: 0 auto;
-    overflow: hidden; /* Esconde os cards que ficam fora da tela */
+    overflow: hidden; 
     padding: 10px 0;
 }
 
@@ -80,13 +80,12 @@ h1 {
     will-change: transform;
 }
 
-/* CARDS DOS TÊNIS */
 .tenis-card {
     min-width: 300px;
     max-width: 300px;
     background-color: #1a1a1a;
     border-radius: 8px;
-    margin-right: 20px; /* Espaçamento entre os cards */
+    margin-right: 20px; 
     overflow: hidden;
     border: 1px solid #2d2d2d;
     transition: transform 0.3s ease, border-color 0.3s ease;
@@ -100,9 +99,8 @@ h1 {
 .tenis-card img {
     width: 100%;
     height: 250px;
-    object-fit: cover; /* Faz a imagem preencher o espaço sem distorcer */
-    background-color: #fff; /* Fundo branco para destacar imagens transparentes */
-}
+    object-fit: cover; 
+    background-color: #fff; 
 
 .tenis-info {
     padding: 15px;
@@ -122,7 +120,7 @@ h1 {
     font-weight: bold;
 }
 
-/* BOTÕES DO CARROSSEL */
+
 .btn-carrossel {
     position: absolute;
     top: 50%;
@@ -146,7 +144,7 @@ h1 {
 .btn-prev { left: 10px; }
 .btn-next { right: 10px; }
 
-/* --- SEÇÃO DE MARCAS/LINKS --- */
+
 .marcas-links {
     max-width: 1200px;
     margin: 40px auto;
@@ -179,7 +177,7 @@ h1 {
     border-color: #ff3e3e;
 }
 
-/* --- FOOTER --- */
+
 .rodape {
     background-color: #0a0a0a;
     border-top: 2px solid #1a1a1a;
@@ -199,12 +197,10 @@ h1 {
     margin: 5px 0;
 }
 
-/* ==========================================================================
-   SEÇÃO SOBRE NÓS (INCORPORADA NA HOME)
-   ========================================================================== */
+
 
 .sobre-nos-home {
-    background-color: #121212; /* Fundo levemente mais claro que o body para dar contraste */
+    background-color: #121212; 
     padding: 100px 24px;
     border-top: 1px solid #1f1f1f;
     border-bottom: 1px solid #1f1f1f;
@@ -215,20 +211,20 @@ h1 {
     max-width: 1300px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1.2fr; /* Divide a tela entre imagem e texto */
+    grid-template-columns: 1fr 1.2fr;
     gap: 60px;
     align-items: center;
 }
 
-/* Ajuste para telas menores (Tablets e Celulares) */
+
 @media (max-width: 968px) {
     .sobre-container {
-        grid-template-columns: 1fr; /* Transforma em uma única coluna */
+        grid-template-columns: 1fr; 
         gap: 40px;
     }
 }
 
-/* Estilização da Imagem */
+
 .sobre-imagem {
     position: relative;
     border-radius: 16px;
@@ -245,10 +241,10 @@ h1 {
 }
 
 .sobre-imagem:hover img {
-    transform: scale(1.03); /* Efeito sutil ao passar o mouse */
+    transform: scale(1.03); 
 }
 
-/* Estilização do Texto */
+
 .sobre-conteudo-texto .subtitulo-sobre {
     color: #ff3e3e;
     font-size: 0.85rem;
@@ -279,7 +275,7 @@ h1 {
     color: #ffffff;
 }
 
-/* Pequenos Selos de Diferenciais */
+
 .sobre-selos {
     display: flex;
     gap: 30px;
@@ -334,7 +330,7 @@ btn-add-carrinho {
     transform: scale(0.97);
 }
 
-/* --- ESTILOS DA PÁGINA DO CARRINHO --- */
+
 .carrinho-container {
     max-width: 1100px;
     margin: 40px auto;
@@ -384,7 +380,7 @@ btn-add-carrinho {
     font-weight: bold;
 }
 
-/* Botões de quantidade (+ e -) */
+
 .item-qtd {
     display: flex;
     align-items: center;
@@ -411,7 +407,6 @@ btn-add-carrinho {
     font-size: 1.2rem;
 }
 
-/* Resumo lateral do Pedido */
 .resumo-carrinho {
     flex: 1;
     min-width: 280px;
@@ -478,4 +473,20 @@ btn-add-carrinho {
 .carrinho-vazio a {
     color: #ff3e3e;
     text-decoration: none;
+}
+
+.btn-adicionar {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #ff3b3b;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-adicionar:hover {
+    background-color: #d32f2f;
 }
