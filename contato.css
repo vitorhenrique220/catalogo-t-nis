@@ -19,41 +19,137 @@ body {
     width: 100%;
 }
 
-.menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1300px;
-    margin: 0 auto;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.Logo {
-    font-size: 1.6rem;
-    font-weight: 900;
-    color: #ff3e3e;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.topo-site {
+    width: 100%;
+    background-color: #111111; 
+    border-bottom: 1px solid #222222;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
+
+
+.menu-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 40px;
+    
+   
+    padding: 28px 40px; 
+    
+   
+    min-height: 80px; 
+    
+    box-sizing: border-box;
+}
+
+
+.logo {
+    font-size: 1.8rem; 
+    font-weight: 900;
+    color: #e50914;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+
+.menu-links a {
+    font-size: 1.05rem; 
+    font-weight: 600;
+}
+
 
 .menu-links {
     display: flex;
-    gap: 30px;
     align-items: center;
+    gap: 20px; 
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.menu-links a {
+
+.menu-iconos {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-left: auto; 
+}
+
+.cart-btn {
+    position: relative;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background-color: #e50914;
     color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #e50914;
     text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+
+
+.menu-links a {
+    text-decoration: none;
+    color: #ffffff;
     font-size: 0.95rem;
     font-weight: 600;
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
 }
 
 .menu-links a:hover,
 .menu-links a.active {
-    color: #ff3e3e;
+    color: #e50914; 
 }
 
+
+
+.icon-btn {
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.icon-btn:hover {
+    color: #e50914;
+}
 
 .contato-principal {
     max-width: 1200px;
@@ -93,7 +189,7 @@ body {
     line-height: 1.6;
 }
 
-/* GRID DE CARDS */
+
 .contato-cards-wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
