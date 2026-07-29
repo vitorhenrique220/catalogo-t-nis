@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recuperar Senha - Culture</title>
+
+  <link rel="icon" type="image/png" href="imagens/ChatGPT Image 28 de jul. de 2026, 15_02_54.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="esqueci-senha.css" />
+</head>
+<body>
+
+  <main class="forgot-card">
+    <header class="forgot-header">
+      <div class="logo-container" style="text-align: center; margin-bottom: 16px;">
+        <img src="imagens/ChatGPT Image 28 de jul. de 2026, 15_02_54.png" alt="Logo Apex" style="max-width: 150px; height: auto; display: inline-block;" />
+      </div>
+      <h1>Recuperar Senha</h1>
+      <p>Digite seu e-mail cadastrado para receber as instruções de redefinição.</p>
+    </header>
+
+    <div id="errorAlert" class="alert alert-error"></div>
+    <div id="successAlert" class="alert alert-success"></div>
+
+    <form id="forgotForm" novalidate>
+      <div class="input-field">
+        <label for="email">E-mail cadastrado</label>
+        <div class="input-wrapper">
+          <i class="fa-regular fa-envelope input-icon"></i>
+          <input type="email" id="email" placeholder="seuemail@exemplo.com" required />
+        </div>
+      </div>
+
+      <button type="submit" class="btn-submit" id="btnSubmit">
+        <span>Enviar Instruções</span>
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </form>
+
+    <footer class="forgot-footer">
+      <p><a href="login.html"><i class="fa-solid fa-arrow-left"></i> Voltar para o Login</a></p>
+    </footer>
+  </main>
+
+  <script src="esqueci-senha.js"></script>
+</body>
+</html>
