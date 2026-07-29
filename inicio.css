@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -29,6 +30,32 @@
     min-height: 80px; 
     
     box-sizing: border-box;
+}
+
+
+
+.logo-site {
+  font-family: 'Montserrat', 'Arial Black', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.logo-site:hover {
+  transform: scale(1.03);
+}
+
+
+.logo-site .ponto,
+.logo-site .destaque {
+  color: #ff3333;
 }
 
 
@@ -146,7 +173,7 @@
     padding-bottom: 15px;
 }
 
-/* Área da Imagem */
+
 .tenis-card img {
     width: 100%;
     background-color: #ffffff; 
@@ -648,6 +675,8 @@ btn-add-carrinho {
 .btn-adicionar:hover {
     background-color: #d32f2f;
 }
+
+
 
 
 #toast-notification {
