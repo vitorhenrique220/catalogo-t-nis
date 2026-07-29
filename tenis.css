@@ -15,6 +15,29 @@
 }
 
 
+.logo-site {
+  font-family: 'Montserrat', 'Arial Black', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.logo-site:hover {
+  transform: scale(1.03);
+}
+
+.logo-site .ponto,
+.logo-site .destaque {
+  color: #ff3333;
+}
+
 .menu-container {
     width: 100%;
     display: flex;
@@ -133,6 +156,11 @@
 }
 
 
+
+
+
+
+
 body {
     background-color: #121212;
     color: #ffffff;
@@ -169,6 +197,8 @@ h1 {
 
 
 
+
+
 .seta-vermelha {
     position: absolute;
     top: 50%;
@@ -179,14 +209,25 @@ h1 {
     cursor: pointer;
 }
 
-
 .seta-vermelha.esquerda {
     left: 10px;
 }
 
+
 .seta-vermelha.direita {
     right: 10px;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 .tenis-card {
     min-width: 300px;
@@ -332,7 +373,6 @@ h1 {
         gap: 40px;
     }
 }
-
 
 .sobre-imagem {
     position: relative;
@@ -609,13 +649,14 @@ h1 {
     background-color: #d32f2f;
 }
 
+
 #toast-notification {
     position: fixed;
     bottom: 30px;
     right: 30px;
     background-color: #1a1a1a;
     color: #ffffff;
-    border: 1px solid #ff3333;
+    border: 1px solid #ff3333; 
     padding: 14px 24px;
     border-radius: 8px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
