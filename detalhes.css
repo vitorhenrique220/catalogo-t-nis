@@ -1,0 +1,263 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.topo-site {
+    width: 100%;
+    background-color: #111111; 
+    border-bottom: 1px solid #222222;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+
+.menu-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 40px;
+    
+   
+    padding: 28px 40px; 
+    
+   
+    min-height: 80px; 
+    
+    box-sizing: border-box;
+}
+
+
+
+.logo-site {
+  font-family: 'Montserrat', 'Arial Black', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.logo-site:hover {
+  transform: scale(1.03);
+}
+
+
+.logo-site .ponto,
+.logo-site .destaque {
+  color: #ff3333;
+}
+
+
+.logo {
+    font-size: 1.8rem; 
+    font-weight: 900;
+    color: #e50914;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+
+.menu-links a {
+    font-size: 1.05rem; 
+    font-weight: 600;
+}
+
+
+.menu-links {
+    display: flex;
+    align-items: center;
+    gap: 20px; 
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+.menu-iconos {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-left: auto; 
+}
+
+
+
+
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #e50914;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+
+
+.menu-links a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.menu-links a:hover,
+.menu-links a.active {
+    color: #e50914; 
+}
+
+
+
+.icon-btn {
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.icon-btn:hover {
+    color: #e50914;
+}
+
+
+.cart-btn {
+    position: relative;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background-color: #e50914;
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+/* =========================
+   RESET GLOBAL & CONTAINER
+========================= */
+* {
+  box-sizing: border-box;
+}
+
+.produtos {
+  display: grid;
+  /* Cria 4 colunas em telas grandes e adapta automaticamente em telas menores */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* =========================
+   ESTRUTURA DO CARD
+========================= */
+.card {
+  background: #1a1a1a;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #2d2d2d;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  width: 100%;
+  
+  /* Flexbox para alinhar o conteúdo interno verticalmente */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: #ff3e3e;
+  box-shadow: 0 0 20px rgba(255, 62, 62, 0.5);
+}
+
+/* =========================
+   IMAGEM DO PRODUTO
+========================= */
+.card img {
+  width: 100%;
+  height: 260px;
+  object-fit: contain;
+  background: #ffffff;
+  padding: 15px;
+  display: block;
+}
+
+/* =========================
+   NOME DO PRODUTO
+========================= */
+.card h3 {
+  color: #ffffff;
+  text-align: center;
+  font-size: 16px;
+  margin: 15px 10px 10px;
+  line-height: 1.3;
+  /* Altura mínima para garantir alinhamento caso o título tenha 2 linhas */
+  min-height: 42px; 
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* =========================
+   PREÇO
+========================= */
+.card p {
+  color: #ff3e3e;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0 0 15px 0;
+}
+
+/* =========================
+   BOTÃO
+========================= */
+.card button {
+  display: block;
+  width: calc(100% - 40px); /* Botão ocupa a largura mantendo margem */
+  margin: 0 auto 20px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #ff3e3e;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.card button:hover {
+  background: #d90000;
+}
