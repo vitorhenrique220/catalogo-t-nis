@@ -5,17 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const eyeIcon = document.getElementById('eyeIcon');
   const errorAlert = document.getElementById('errorAlert');
 
- 
-  togglePasswordBtn.addEventListener('click', () => {
-    const isPassword = passwordInput.getAttribute('type') === 'password';
-    passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
-    
-  
-    eyeIcon.classList.toggle('fa-eye', !isPassword);
-    eyeIcon.classList.toggle('fa-eye-slash', isPassword);
-  });
 
- 
+  if (togglePasswordBtn && passwordInput && eyeIcon) {
+    togglePasswordBtn.addEventListener('click', () => {
+      const isPassword = passwordInput.getAttribute('type') === 'password';
+      passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+      
+      eyeIcon.classList.toggle('fa-eye', !isPassword);
+      eyeIcon.classList.toggle('fa-eye-slash', isPassword);
+    });
+  }
+
   loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -23,10 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const password = passwordInput.value.trim();
     const remember = document.getElementById('remember').checked;
 
-   
     hideError();
 
- 
     if (!email || !password) {
       showError('Por favor, preencha todos os campos.');
       return;
@@ -43,9 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     console.log('Login solicitado:', { email, remember });
-    alert('Login realizado com sucesso!');
-  });
 
+
+    window.location.href = 'inicio.html';
+  });
 
   function showError(message) {
     errorAlert.textContent = message;
@@ -61,12 +60,4 @@ document.addEventListener('DOMContentLoaded', () => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 });
-
-const btnRegister = document.getElementById('btnRegister');
-
-btnRegister.addEventListener('click', (e) => {
-  e.preventDefault(); 
-  alert('Redirecionando para a tela de cadastro...');
-});
-
 
