@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cadastro - Culture</title>
+  
+ <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230d0d0d'/><ellipse cx='50' cy='22' rx='20' ry='7' fill='none' stroke='%230088ff' stroke-width='5'/><path d='M68 42 C 60 34, 38 32, 30 45 C 20 60, 30 80, 52 80 C 66 80, 72 72, 72 72' fill='none' stroke='%230088ff' stroke-width='12' stroke-linecap='round' stroke-linejoin='round'/><path d='M30 48 L28 58' stroke='%230088ff' stroke-width='4' stroke-linecap='round'/><path d='M68 76 L68 84' stroke='%230088ff' stroke-width='4' stroke-linecap='round'/></svg>">
+ 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="cadastro.css" />
+</head>
+<body>
+
+  <main class="register-card">
+    <header class="register-header">
+    
+      <div class="logo-container" style="text-align: center; margin-bottom: 16px;">
+        <img src="imagens/logo.png" alt="Logo Apex" style="max-width: 150px; height: auto; display: inline-block;" />
+      </div>
+      <h1>Crie sua conta</h1>
+      <p>Comece a analisar suas planilhas agora mesmo</p>
+    </header>
+
+    <div class="divider">
+      <span>cadastre-se com seu e-mail</span>
+    </div>
+
+    <div id="errorAlert" class="alert alert-error"></div>
+    <div id="successAlert" class="alert alert-success"></div>
+
+    <form id="registerForm" novalidate>
+      <div class="input-field">
+        <label for="fullname">Nome completo</label>
+        <div class="input-wrapper">
+          <i class="fa-regular fa-user input-icon"></i>
+          <input type="text" id="fullname" placeholder="Ex: João Silva" required />
+        </div>
+      </div>
+
+      <div class="input-field">
+        <label for="email">E-mail corporativo ou pessoal</label>
+        <div class="input-wrapper">
+          <i class="fa-regular fa-envelope input-icon"></i>
+          <input type="email" id="email" placeholder="seuemail@exemplo.com" required />
+        </div>
+      </div>
+
+      <div class="input-field">
+        <label for="password">Senha</label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-lock input-icon"></i>
+          <input type="password" id="password" placeholder="Mínimo de 6 caracteres" required />
+          <button type="button" class="btn-toggle-pass" data-target="password" aria-label="Mostrar senha">
+            <i class="fa-regular fa-eye"></i>
+          </button>
+        </div>
+        <div id="passwordStrength" class="password-strength">
+          <div class="strength-bar-container">
+            <div id="strengthBar" class="strength-bar"></div>
+          </div>
+          <span id="strengthText" class="strength-text">Força da senha</span>
+        </div>
+      </div>
+
+      <div class="input-field">
+        <label for="confirmPassword">Confirmar senha</label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-lock input-icon"></i>
+          <input type="password" id="confirmPassword" placeholder="Repita a senha" required />
+          <button type="button" class="btn-toggle-pass" data-target="confirmPassword" aria-label="Mostrar senha">
+            <i class="fa-regular fa-eye"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="terms-option">
+        <input type="checkbox" id="terms" required />
+        <label for="terms">
+          Li e concordo com os <a href="#">Termos de Uso</a> e a <a href="#">Política de Privacidade</a>.
+        </label>
+      </div>
+
+      <button type="submit" class="btn-submit" id="btnSubmit">
+        <span>Criar Conta</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </form>
+
+    <footer class="register-footer">
+      <p>Já tem uma conta? <a href="login.html">Entre aqui</a></p>
+    </footer>
+  </main>
+
+  <script src="cadastro.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</body>
+</html>
