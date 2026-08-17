@@ -10,27 +10,22 @@
 <body>
 
 <header class="topo-site">
-   
     <div class="top-announcement-bar">
         <button class="arrow-btn" aria-label="Anterior">&lt;</button>
         <span class="announcement-text">FRETE GRÁTIS PARA TODO O BRASIL</span>
         <button class="arrow-btn" aria-label="Próximo">&gt;</button>
     </div>
 
-    
     <div class="header-main-row">
-     
         <div class="search-box">
             <input type="text" placeholder="O que você está buscando?" id="campo-busca">
             <button class="search-btn" onclick="executarBusca()" aria-label="Buscar">🔍</button>
         </div>
 
- 
         <div class="header-logo">
-       <a href="inicio.html"><img src="imagens/logo.png" alt="Culture.COO" class="logo"></a> 
+            <a href="inicio.html"><img src="imagens/logo.png" alt="Culture.COO" class="logo"></a> 
         </div>
 
-     
         <div class="user-actions">
             <a href="login.html" class="account-link">
                 <span class="icon-user">👤</span>
@@ -49,18 +44,14 @@
         </div>
     </div>
 
-  
     <nav class="header-nav-bar">
         <div class="nav-container">
-        
             <ul class="nav-links">
-                
                 <li><a href="blusas-jaquetas.html">BLUSAS</a></li>
                 <li><a href="tenis.html">TENIS</a></li>
                 <li><a href="camisas.html">CAMISAS</a></li>
                 <li><a href="calcas-shorts.html">CALCAS/SHORTS</a></li>
                 <li><a href="contato.html">CONTATO</a></li>
-
             </ul>
         </div>
     </nav>
@@ -76,7 +67,7 @@
     </div>
 </section>
 
-<main>
+<main id="produtos">
     <h1>Nossos Produtos</h1>
 
     <div class="carrossel-container">
@@ -318,8 +309,10 @@
 <script>
     let currentPosition = 0;
     const track = document.getElementById('carrosselTrack');
-    const cards = document.querySelectorAll('.tenis-card, .card');
-    const totalCards = cards.length;
+
+    function getCardsVisiveis() {
+        return Array.from(document.querySelectorAll('.tenis-card, .card')).filter(card => card.style.display !== 'none');
+    }
 
     function getCardsPerView() {
         if (window.innerWidth > 1024) return 3;
@@ -328,11 +321,17 @@
     }
 
     function moveCarrossel(direction) {
-        if (!track || totalCards === 0) return;
+        if (!track) return;
+
+        const cardsVisiveis = getCardsVisiveis();
+        const totalVisiveis = cardsVisiveis.length;
+
+        if (totalVisiveis === 0) return;
 
         const cardsPerView = getCardsPerView();
-        const cardWidth = cards[0].offsetWidth + 20;
-        const maxPosition = totalCards - cardsPerView;
+        const firstCard = cardsVisiveis[0];
+        const cardWidth = firstCard ? firstCard.offsetWidth + 20 : 0;
+        const maxPosition = Math.max(0, totalVisiveis - cardsPerView);
 
         currentPosition += direction;
 
@@ -346,10 +345,38 @@
         track.style.transform = `translateX(${translateX}px)`;
     }
 
-    window.addEventListener('resize', () => {
+    function executarBusca() {
+        const termo = document.getElementById('campo-busca').value.toLowerCase().trim();
+        const cards = document.querySelectorAll('.tenis-card, .card');
+        let encontrouCount = 0;
+
+        cards.forEach(card => {
+            const titulo = card.querySelector('h3, h4')?.innerText.toLowerCase() || '';
+            
+            if (titulo.includes(termo)) {
+                card.style.display = 'block';
+                encontrouCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Reseta o carrossel para o início
         currentPosition = 0;
         if (track) track.style.transform = `translateX(0px)`;
-    });
+
+        // Oculta/Exibe os botões do carrossel se a busca tiver poucos resultados
+        const btnsCarrossel = document.querySelectorAll('.btn-carrossel');
+        if (encontrouCount <= getCardsPerView()) {
+            btnsCarrossel.forEach(btn => btn.style.display = 'none');
+        } else {
+            btnsCarrossel.forEach(btn => btn.style.display = 'flex');
+        }
+
+        if (encontrouCount === 0 && termo !== '') {
+            mostrarToast('Nenhum produto encontrado.');
+        }
+    }
 
     function mostrarToast(mensagem) {
         let toast = document.getElementById('toast-notification');
@@ -398,15 +425,21 @@
         }
     }
 
-    function executarBusca() {
-        let termo = document.getElementById('campo-busca').value;
-        if (termo.trim() !== '') {
-            alert(`Buscando por: ${termo}`);
-        }
-    }
+    window.addEventListener('resize', () => {
+        currentPosition = 0;
+        if (track) track.style.transform = `translateX(0px)`;
+    });
 
     document.addEventListener('DOMContentLoaded', () => {
         atualizarContadorHeader();
+
+        // Faz a busca disparar em tempo real ou ao apertar Enter
+        const campoInput = document.getElementById('campo-busca');
+        if (campoInput) {
+            campoInput.addEventListener('keyup', (e) => {
+                executarBusca();
+            });
+        }
 
         document.querySelectorAll('.btn-adicionar').forEach(botao => {
             botao.onclick = (event) => {
@@ -416,8 +449,6 @@
                     const nome = card.querySelector('h3, h4')?.innerText.trim() || 'Produto';
                     const precoText = card.querySelector('.preco, .tenis-preco')?.innerText.trim() || 'R$ 0,00';
                     const imagem = card.querySelector('img')?.src || '';
-
-                    
                     const precoNum = parseFloat(precoText.replace('R$', '').replace('.', '').replace(',', '.').trim()) || 0;
 
                     adicionarAoCarrinho(nome, precoNum, imagem);

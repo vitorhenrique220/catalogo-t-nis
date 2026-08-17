@@ -31,17 +31,18 @@
 }
 
 body {
-    background-color: var(--bg-pagina);
-    color: var(--cor-texto);
+    background-color: #121212;
+    color: #ffffff;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
 }
 
 main {
-    max-width: 1240px;
+    max-width: 1200px;
     margin: 40px auto;
-    padding: 0 24px;
+    padding: 0 20px;
 }
 
 h1, h2, h3, h4 {
@@ -52,20 +53,16 @@ h1, h2, h3, h4 {
 
 h1 {
     text-align: center;
-    margin-bottom: 36px;
+    margin: 40px 0;
     font-size: clamp(2rem, 4vw, 2.75rem);
     text-transform: uppercase;
 }
-
-
 
 .topo-site {
     background-color: #000;
     color: #fff;
     font-family: Arial, sans-serif;
     width: 100%;
-    
-
     position: sticky;
     top: 0;
     z-index: 1000; 
@@ -81,7 +78,7 @@ h1 {
 }
 
 .announcement-text {
-    color:  #ffffff;
+    color: #ffffff;
     font-size: 12px;
     font-weight: bold;
     letter-spacing: 0.5px;
@@ -90,11 +87,10 @@ h1 {
 .arrow-btn {
     background: none;
     border: none;
-    color:  #ffffff;
+    color: #ffffff;
     font-size: 14px;
     cursor: pointer;
 }
-
 
 .header-main-row {
     display: flex;
@@ -105,7 +101,6 @@ h1 {
     position: relative; 
 }
 
-
 .header-logo {
     position: absolute;
     left: 50%;
@@ -114,7 +109,6 @@ h1 {
     justify-content: center;
     align-items: center;
 }
-
 
 .header-logo .logo {
     color: #fff;
@@ -130,7 +124,6 @@ h1 {
     width: auto;
     display: block;
 }
-
 
 .search-box {
     display: flex;
@@ -160,10 +153,6 @@ h1 {
     cursor: pointer;
     font-size: 14px;
 }
-
-
-
-
 
 .user-actions {
     display: flex;
@@ -223,7 +212,6 @@ h1 {
     font-weight: bold;
 }
 
-
 .header-nav-bar {
     border-top: 1px solid #1f1f1f;
     border-bottom: 1px solid #1f1f1f;
@@ -274,26 +262,6 @@ h1 {
     position: relative;
 }
 
-
-body {
-    background-color: #121212;
-    color: #ffffff;
-    overflow-x: hidden;
-}
-
-main {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
-
-h1 {
-    text-align: center;
-    margin: 40px 0;
-    font-size: 2.5rem;
-    text-transform: uppercase;
-}
-
 .btn-adicionar {
     background-color: #2563eb; 
     color: #ffffff;
@@ -326,6 +294,8 @@ h1 {
     border: 1px solid #2d2d2d;
     transition: .3s;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
 }
 
 .card:hover {
@@ -342,21 +312,33 @@ h1 {
     padding: 15px;
 }
 
+/* --- BLOCO ALTERADO PARA FIXAR O TEXTO CORTADO --- */
 .info {
     padding: 18px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
 }
 
 .info h3 {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: white;
-    height: 40px;
+    min-height: 2.8em; /* Garante altura para até 2 linhas mantendo o alinhamento de todos os cards */
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limita em exatamente 2 linhas se for muito longo */
+    -webkit-box-orient: vertical;
     overflow: hidden;
+    margin-bottom: 8px;
 }
+/* ------------------------------------------------ */
 
 .preco {
     display: block;
-    margin-top: 15px;
+    margin-top: 10px;
+    margin-bottom: 15px;
     font-size: 1.6rem;
     font-weight: bold;
     color: #3b82f6; 
