@@ -2,7 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 body {
@@ -10,20 +11,21 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #0d0d0d;
-    color: #ffffff;
+    background-color: var(--bg-pagina, #000000);
+    color: var(--cor-texto, #ffffff);
     padding: 20px;
+    -webkit-font-smoothing: antialiased;
 }
 
 .forgot-card {
-    background: #141414;
+    background: var(--bg-card, #0d0d12);
     width: 100%;
     max-width: 420px;
     border-radius: 12px;
     padding: 36px 40px;
-    border: 1px solid #262626;
-    color: #ffffff;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--cor-borda, #1a1a24);
+    color: var(--cor-texto, #ffffff);
+    box-shadow: var(--sombra-card, 0 10px 30px -10px rgba(0, 0, 0, 0.8));
 }
 
 .forgot-header {
@@ -37,23 +39,24 @@ body {
     justify-content: center;
     width: 48px;
     height: 48px;
-    background: #1f1f1f;
-    border: 1px solid #333333;
+    background: var(--bg-input, #12121a);
+    border: 1px solid var(--cor-borda, #1a1a24);
     border-radius: 10px;
     font-size: 20px;
-    color: #0088ff; 
+    color: var(--cor-destaque-brilho, #3b82f6); 
     margin-bottom: 16px;
 }
 
 .forgot-header h1 {
     font-size: 22px;
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 8px;
-    color: #ffffff;
+    color: var(--cor-texto, #ffffff);
+    letter-spacing: -0.02em;
 }
 
 .forgot-header p {
-    color: #8c8c8c;
+    color: var(--cor-texto-secundario, #8e9aaf);
     font-size: 13px;
     line-height: 1.5;
 }
@@ -68,9 +71,9 @@ body {
 }
 
 .alert-error {
-    background: rgba(0, 136, 255, 0.1);
-    border: 1px solid #0088ff;
-    color: #0088ff;
+    background: var(--cor-destaque-suave, rgba(37, 99, 235, 0.15));
+    border: 1px solid var(--cor-destaque, #2563eb);
+    color: var(--cor-destaque-brilho, #3b82f6);
 }
 
 .alert-success {
@@ -89,7 +92,7 @@ body {
     display: block;
     font-size: 13px;
     font-weight: 500;
-    color: #cccccc;
+    color: var(--cor-texto, #ffffff);
     margin-bottom: 6px;
 }
 
@@ -102,54 +105,51 @@ body {
 .input-icon {
     position: absolute;
     left: 14px;
-    color: #666666;
+    color: var(--cor-texto-secundario, #8e9aaf);
     font-size: 14px;
-    transition: color 0.2s;
 }
 
 .input-wrapper input {
     width: 100%;
     padding: 12px 14px 12px 42px;
-    background: #1f1f1f;
-    border: 1px solid #333333;
+    background: var(--bg-input, #12121a);
+    border: 1px solid var(--cor-borda, #1a1a24);
     border-radius: 6px;
-    color: #ffffff;
+    color: var(--cor-texto, #ffffff);
     font-size: 14px;
     outline: none;
-    transition: all 0.2s ease;
 }
 
 .input-wrapper input:focus {
-    border-color: #0088ff;
+    border-color: var(--cor-destaque, #2563eb);
 }
 
 .input-wrapper input:focus ~ .input-icon {
-    color: #0088ff;
+    color: var(--cor-destaque-brilho, #3b82f6);
 }
 
 .btn-submit {
     width: 100%;
     padding: 12px;
-    background: #0088ff; 
+    background: var(--cor-destaque, #2563eb); 
     color: #ffffff;
     border: none;
     border-radius: 6px;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .btn-submit:hover {
-    background: #0066cc;
+    background: var(--cor-destaque-hover, #1d4ed8);
 }
 
 .btn-submit:active {
-    transform: scale(0.99);
+    transform: scale(0.98);
 }
 
 .forgot-footer {
@@ -159,15 +159,14 @@ body {
 }
 
 .forgot-footer a {
-    color: #8c8c8c;
+    color: var(--cor-texto-secundario, #8e9aaf);
     text-decoration: none;
     font-weight: 500;
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    transition: color 0.2s ease;
 }
 
 .forgot-footer a:hover {
-    color: #0088ff;
+    color: var(--cor-destaque-brilho, #3b82f6);
 }
