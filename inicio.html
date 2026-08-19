@@ -10,6 +10,7 @@
 <body>
 
 <header class="topo-site">
+
     <div class="top-announcement-bar">
         <button class="arrow-btn" aria-label="Anterior">&lt;</button>
         <span class="announcement-text">FRETE GRÁTIS PARA TODO O BRASIL</span>
@@ -27,7 +28,8 @@
         </div>
 
         <div class="user-actions">
-            <a href="login.html" class="account-link">
+            
+            <a href="login.html" class="account-link" id="area-login-topo">
                 <span class="icon-user">👤</span>
                 <div class="account-text">
                     <strong>Olá! Faça login</strong>
@@ -361,11 +363,9 @@
             }
         });
 
-        
         currentPosition = 0;
         if (track) track.style.transform = `translateX(0px)`;
 
-      
         const btnsCarrossel = document.querySelectorAll('.btn-carrossel');
         if (encontrouCount <= getCardsPerView()) {
             btnsCarrossel.forEach(btn => btn.style.display = 'none');
@@ -425,6 +425,26 @@
         }
     }
 
+    
+    function atualizarHeaderUsuario() {
+        const areaLogin = document.getElementById('area-login-topo');
+        const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+
+        if (areaLogin && usuarioLogado && usuarioLogado.nome) {
+            const primeiroNome = usuarioLogado.nome.split(' ')[0];
+            const paginaDestino = usuarioLogado.email === 'admin@loja.com' ? 'admin.html' : 'minha-conta.html';
+
+            areaLogin.href = paginaDestino;
+            areaLogin.innerHTML = `
+                <span class="icon-user">👤</span>
+                <div class="account-text">
+                    <strong style="color: #0088ff;">Olá, ${primeiroNome}</strong>
+                    <small>Minha Conta</small>
+                </div>
+            `;
+        }
+    }
+
     window.addEventListener('resize', () => {
         currentPosition = 0;
         if (track) track.style.transform = `translateX(0px)`;
@@ -432,8 +452,8 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         atualizarContadorHeader();
+        atualizarHeaderUsuario();
 
-    
         const campoInput = document.getElementById('campo-busca');
         if (campoInput) {
             campoInput.addEventListener('keyup', (e) => {

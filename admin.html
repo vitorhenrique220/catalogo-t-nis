@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin | Loja de Tênis</title>
+    <link rel="stylesheet" href="admin.css">
+
+    <style>
+     
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-box {
+            background-color: #18181b;
+            border: 1px solid #3f3f46;
+            border-radius: 12px;
+            padding: 24px;
+            width: 90%;
+            max-width: 420px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 136, 255, 0.2);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .modal-box h4 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            color: #0088ff;
+        }
+
+        .modal-box p {
+            margin: 15px 0 25px;
+            color: #d4d4d8;
+            font-size: 0.95rem;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn-modal-cancel {
+            background-color: #27272a;
+            color: #e4e4e7;
+            border: 1px solid #3f3f46;
+            padding: 8px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-modal-cancel:hover {
+            background-color: #3f3f46;
+        }
+
+        .btn-modal-confirm {
+            background-color: #e74c3c;
+            color: #ffffff;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-modal-confirm:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-announcement-bar">
+        <div class="announcement-text">PAINEL ADMINISTRATIVO</div>
+    </header>
+
+    <main class="carrinho-container">
+        <h1>Painel de Controle</h1>
+
+     
+        <section class="sobre-nos-home" style="padding: 30px; border-radius: 8px;">
+            <h3>Cadastrar Novo Usuário</h3>
+            <div id="alerta-usuario" class="alerta-box" style="display: none; margin: 15px 0; padding: 10px; border-radius: 5px; text-align: center; font-size: 0.9rem;"></div>
+            
+            <form id="form-cadastrar-usuario" style="margin-bottom: 30px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 15px;">
+                    <div class="form-group">
+                        <label for="user-nome-input">Nome Completo</label>
+                        <input type="text" id="user-nome-input" placeholder="Ex: João Silva" required style="width:100%; padding: 8px; background: #1a1a1a; border: 1px solid #2d2d2d; color: #fff;">
+                    </div>
+                    <div class="form-group">
+                        <label for="user-email-input">E-mail</label>
+                        <input type="email" id="user-email-input" placeholder="usuario@email.com" required style="width:100%; padding: 8px; background: #1a1a1a; border: 1px solid #2d2d2d; color: #fff;">
+                    </div>
+                    <div class="form-group">
+                        <label for="user-senha-input">Senha</label>
+                        <input type="password" id="user-senha-input" placeholder="******" required style="width:100%; padding: 8px; background: #1a1a1a; border: 1px solid #2d2d2d; color: #fff;">
+                    </div>
+                </div>
+                <button type="submit" class="btn-adicionar" style="width: auto; padding: 10px 25px;">Cadastrar Usuário</button>
+            </form>
+
+            <h3>Usuários Cadastrados</h3>
+            <table style="width: 100%; margin-top: 15px; border-collapse: collapse; background: #1a1a1a;">
+                <thead>
+                    <tr style="border-bottom: 1px solid #2d2d2d; text-align: left;">
+                        <th style="padding: 10px;">Nome</th>
+                        <th style="padding: 10px;">E-mail</th>
+                        <th style="padding: 10px; width: 120px; text-align: center;">Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="lista-usuarios">
+                 
+                </tbody>
+            </table>
+        </section>
+
+       
+        <section class="sobre-nos-home" style="padding: 30px; border-radius: 8px; margin-top: 30px;">
+            <h3>Cadastrar Novo Tênis</h3>
+            <div id="alerta-admin" class="alerta-box" style="display: none; margin: 15px 0; padding: 10px; border-radius: 5px; text-align: center; font-size: 0.9rem;"></div>
+            
+            <form id="form-cadastrar-produto">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 15px;">
+                    <div class="form-group">
+                        <label for="prod-nome">Nome do Tênis</label>
+                        <input type="text" id="prod-nome" placeholder="Ex: Nike Air Max Dn" required style="width:100%; padding: 8px; background: #1a1a1a; border: 1px solid #2d2d2d; color: #fff;">
+                    </div>
+                    <div class="form-group">
+                        <label for="prod-preco">Preço (R$)</label>
+                        <input type="number" id="prod-preco" step="0.01" placeholder="999.00" required style="width:100%; padding: 8px; background: #1a1a1a; border: 1px solid #2d2d2d; color: #fff;">
+                    </div>
+                    <div class="form-group">
+                        <label for="prod-imagem">URL da Imagem</label>
+                        <input type="url" id="prod-imagem" placeholder="https://..." required style="width:100%; padding: 8px; background: #1a1a1a; border: 1px solid #2d2d2d; color: #fff;">
+                    </div>
+                </div>
+                <button type="submit" class="btn-adicionar" style="width: auto; padding: 10px 25px;">Adicionar Tênis</button>
+            </form>
+
+            <h3 style="margin-top: 30px;">Catálogo de Tênis</h3>
+            <table style="width: 100%; margin-top: 15px; border-collapse: collapse; background: #1a1a1a;">
+                <thead>
+                    <tr style="border-bottom: 1px solid #2d2d2d; text-align: left;">
+                        <th style="padding: 10px;">Modelo</th>
+                        <th style="padding: 10px;">Preço</th>
+                        <th style="padding: 10px;">Imagem</th>
+                        <th style="padding: 10px; width: 120px; text-align: center;">Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="lista-produtos">
+                
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+   
+    <div id="custom-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-box">
+            <h4>Confirmação</h4>
+            <p id="modal-msg">Tem certeza que deseja realizar esta ação?</p>
+            <div class="modal-actions">
+                <button id="btn-modal-cancel" class="btn-modal-cancel">Cancelar</button>
+                <button id="btn-modal-confirm" class="btn-modal-confirm">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="rodape">
+        <div class="footer-conteudo">
+            <p>&copy; 2026 Loja de Tênis. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+
+
+        if (!usuarioLogado || usuarioLogado.email !== 'admin@loja.com') {
+            alert('Acesso negado. Esta página é restrita ao Administrador.');
+            window.location.href = 'index.html';
+            return;
+        }
+
+        const tabelaUsuarios = document.getElementById('lista-usuarios');
+        const formUsuario = document.getElementById('form-cadastrar-usuario');
+        const alertaUsuario = document.getElementById('alerta-usuario');
+
+        const modal = document.getElementById('custom-modal');
+        const modalMsg = document.getElementById('modal-msg');
+        const btnCancel = document.getElementById('btn-modal-cancel');
+        const btnConfirm = document.getElementById('btn-modal-confirm');
+
+        function mostrarConfirmacao(mensagem, acaoAoConfirmar) {
+            modalMsg.textContent = mensagem;
+            modal.style.display = 'flex';
+
+            const fecharModal = () => {
+                modal.style.display = 'none';
+                btnConfirm.removeEventListener('click', executarConfirmacao);
+                btnCancel.removeEventListener('click', fecharModal);
+            };
+
+            const executarConfirmacao = () => {
+                acaoAoConfirmar();
+                fecharModal();
+            };
+
+            btnConfirm.addEventListener('click', executarConfirmacao);
+            btnCancel.addEventListener('click', fecharModal);
+        }
+
+        function exibirAlerta(elemento, mensagem, tipo = 'sucesso') {
+            elemento.style.display = 'block';
+            elemento.style.backgroundColor = tipo === 'sucesso' ? '#00ff66' : '#e74c3c';
+            elemento.style.color = tipo === 'sucesso' ? '#000' : '#fff';
+            elemento.textContent = mensagem;
+
+            setTimeout(() => {
+                elemento.style.display = 'none';
+            }, 3000);
+        }
+
+       
+        function carregarUsuarios() {
+            const usuariosSalvos = JSON.parse(localStorage.getItem('usuariosLojaTenis')) || [];
+            tabelaUsuarios.innerHTML = '';
+
+            if (usuariosSalvos.length === 0) {
+                tabelaUsuarios.innerHTML = '<tr><td colspan="3" style="padding: 15px; text-align: center; color: #888;">Nenhum usuário cadastrado.</td></tr>';
+                return;
+            }
+
+            usuariosSalvos.forEach((user, index) => {
+                const tr = document.createElement('tr');
+                tr.style.borderBottom = '1px solid #2d2d2d';
+                tr.innerHTML = `
+                    <td style="padding: 10px;">${user.nome}</td>
+                    <td style="padding: 10px;">${user.email}</td>
+                    <td style="padding: 10px; text-align: center;">
+                        <button class="btn-excluir-user" data-index="${index}" style="background-color: transparent; border: 1px solid #e74c3c; color: #e74c3c; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                            Excluir
+                        </button>
+                    </td>
+                `;
+                tabelaUsuarios.appendChild(tr);
+            });
+
+            document.querySelectorAll('.btn-excluir-user').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const idx = e.currentTarget.getAttribute('data-index');
+                    excluirUsuario(idx);
+                });
+            });
+        }
+
+    
+        formUsuario.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const nome = document.getElementById('user-nome-input').value.trim();
+            const email = document.getElementById('user-email-input').value.trim();
+            const senha = document.getElementById('user-senha-input').value;
+
+            if (!nome || !email || !senha) {
+                exibirAlerta(alertaUsuario, 'Preencha todos os campos.', 'erro');
+                return;
+            }
+
+            let usuariosSalvos = JSON.parse(localStorage.getItem('usuariosLojaTenis')) || [];
+
+            const jaExiste = usuariosSalvos.some(u => u.email === email);
+            if (jaExiste || email === 'admin@loja.com') {
+                exibirAlerta(alertaUsuario, 'Este e-mail já está cadastrado.', 'erro');
+                return;
+            }
+
+            usuariosSalvos.push({ nome, email, senha });
+            localStorage.setItem('usuariosLojaTenis', JSON.stringify(usuariosSalvos));
+
+            exibirAlerta(alertaUsuario, 'Usuário cadastrado com sucesso!');
+            formUsuario.reset();
+            carregarUsuarios();
+        });
+
+        function excluirUsuario(index) {
+            let usuariosSalvos = JSON.parse(localStorage.getItem('usuariosLojaTenis')) || [];
+            
+            if (usuariosSalvos[index]) {
+                const nomeUsuario = usuariosSalvos[index].nome;
+                mostrarConfirmacao(`Tem certeza que deseja remover "${nomeUsuario}"?`, () => {
+                    usuariosSalvos.splice(index, 1);
+                    localStorage.setItem('usuariosLojaTenis', JSON.stringify(usuariosSalvos));
+                    exibirAlerta(alertaUsuario, 'Usuário removido com sucesso!', 'sucesso');
+                    carregarUsuarios();
+                });
+            }
+        }
+
+       
+        const formProduto = document.getElementById('form-cadastrar-produto');
+        const alertaAdmin = document.getElementById('alerta-admin');
+        const tabelaProdutos = document.getElementById('lista-produtos');
+
+        function carregarProdutos() {
+            const produtosCadastrados = JSON.parse(localStorage.getItem('produtosLojaTenis')) || [];
+            tabelaProdutos.innerHTML = '';
+
+            if (produtosCadastrados.length === 0) {
+                tabelaProdutos.innerHTML = '<tr><td colspan="4" style="padding: 15px; text-align: center; color: #888;">Nenhum tênis cadastrado no catálogo.</td></tr>';
+                return;
+            }
+
+            produtosCadastrados.forEach((produto, index) => {
+                const tr = document.createElement('tr');
+                tr.style.borderBottom = '1px solid #2d2d2d';
+                tr.innerHTML = `
+                    <td style="padding: 10px;">${produto.nome}</td>
+                    <td style="padding: 10px; color: #0088ff; font-weight: bold;">R$ ${produto.preco.toFixed(2).replace('.', ',')}</td>
+                    <td style="padding: 10px;"><img src="${produto.imagem}" alt="${produto.nome}" style="max-width: 60px; height: auto; border-radius: 4px; background: #fff;"></td>
+                    <td style="padding: 10px; text-align: center;">
+                        <button class="btn-excluir-produto" data-index="${index}" style="background-color: transparent; border: 1px solid #e74c3c; color: #e74c3c; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                            Excluir
+                        </button>
+                    </td>
+                `;
+                tabelaProdutos.appendChild(tr);
+            });
+
+            document.querySelectorAll('.btn-excluir-produto').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const idx = e.currentTarget.getAttribute('data-index');
+                    excluirProduto(idx);
+                });
+            });
+        }
+
+        formProduto.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const nomeProduto = document.getElementById('prod-nome').value.trim();
+            const precoProduto = parseFloat(document.getElementById('prod-preco').value);
+            const imagemProduto = document.getElementById('prod-imagem').value.trim();
+
+            if (!nomeProduto || !imagemProduto || isNaN(precoProduto) || precoProduto <= 0) {
+                exibirAlerta(alertaAdmin, 'Preencha todos os campos corretamente.', 'erro');
+                return;
+            }
+
+            const novoProduto = {
+                id: Date.now(),
+                nome: nomeProduto,
+                preco: precoProduto,
+                imagem: imagemProduto
+            };
+
+            const produtosCadastrados = JSON.parse(localStorage.getItem('produtosLojaTenis')) || [];
+            produtosCadastrados.push(novoProduto);
+            localStorage.setItem('produtosLojaTenis', JSON.stringify(produtosCadastrados));
+
+            exibirAlerta(alertaAdmin, 'Tênis adicionado com sucesso!');
+            formProduto.reset();
+            carregarProdutos();
+        });
+
+        function excluirProduto(index) {
+            const produtosCadastrados = JSON.parse(localStorage.getItem('produtosLojaTenis')) || [];
+
+            if (produtosCadastrados[index]) {
+                mostrarConfirmacao(`Deseja remover o produto "${produtosCadastrados[index].nome}" do catálogo?`, () => {
+                    produtosCadastrados.splice(index, 1);
+                    localStorage.setItem('produtosLojaTenis', JSON.stringify(produtosCadastrados));
+                    exibirAlerta(alertaAdmin, 'Produto removido com sucesso!', 'sucesso');
+                    carregarProdutos();
+                });
+            }
+        }
+
+        carregarUsuarios();
+        carregarProdutos();
+    });
+</script>
+</body>
+</html>
