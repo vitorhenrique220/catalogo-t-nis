@@ -20,7 +20,6 @@
     --img-fundo-card: #08080c;
     --blur-header: blur(16px);
 
-    color-scheme: dark;
 }
 
 *, *::before, *::after {
@@ -531,7 +530,7 @@ h1 {
     border-color: var(--cor-destaque);
     color: var(--cor-destaque-brilho);
     transform: translateY(-2px);
-    box-shadow: 0 0 10px rgba(37, 99, 235, 0.2);
+ box-shadow: 0 0 10px rgba(37, 99, 235, 0.2);
 }
 
 .sobre-nos-home {

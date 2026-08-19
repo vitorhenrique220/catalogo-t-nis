@@ -94,16 +94,14 @@ h1 {
     cursor: pointer;
 }
 
-
 .header-main-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
-    background-color: #000;
+    background-color: var(--bg-rodape);
     position: relative; 
 }
-
 
 .header-logo {
     position: absolute;
@@ -132,7 +130,9 @@ h1 {
 .search-box {
     display: flex;
     align-items: center;
-    border: 1px solid #ffffff;
+    border: 1px solid var(--cor-borda);
+    background-color: var(--bg-input);
+    border-radius: 6px;
     padding: 6px 12px;
     width: 280px;
 }
@@ -141,13 +141,13 @@ h1 {
     background: transparent;
     border: none;
     outline: none;
-    color: #fff;
+    color: var(--cor-texto);
     width: 100%;
     font-size: 13px;
 }
 
 .search-box input::placeholder {
-    color: #888;
+    color: var(--cor-texto-secundario);
 }
 
 .search-btn {
@@ -157,7 +157,6 @@ h1 {
     cursor: pointer;
     font-size: 14px;
 }
-
 
 .user-actions {
     display: flex;

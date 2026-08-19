@@ -712,20 +712,19 @@
         function mostrarToast(mensagem) {
             let toast = document.getElementById('toast-notification');
 
-            // Cria o container do Toast dinamicamente caso não exista no HTML
+          
             if (!toast) {
                 toast = document.createElement('div');
                 toast.id = 'toast-notification';
                 document.body.appendChild(toast);
             }
 
-            // Define o conteúdo com o check vermelho e a mensagem formatada
+           
             toast.innerHTML = `<span style="color: #ff3333; font-weight: bold; margin-right: 8px;">✓</span> ${mensagem}`;
 
-            // Mostra o Toast adicionando a classe .show
+        
             toast.classList.add('show');
 
-            // Esconde o Toast após 3 segundos
             setTimeout(() => {
                 toast.classList.remove('show');
             }, 3000);
