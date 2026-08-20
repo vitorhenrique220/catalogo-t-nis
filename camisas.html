@@ -610,156 +610,132 @@
     </footer>
 
 
-    <script>
+     <script>
+    
+    let currentPosition = 0;
+const track = document.getElementById('carrosselTrack');
+const cards = document.querySelectorAll('.tenis-card, .card'); 
+const totalCards = cards.length;
 
-        let currentPosition = 0;
-        const track = document.getElementById('carrosselTrack');
-        const cards = document.querySelectorAll('.tenis-card, .card');
-        const totalCards = cards.length;
+function getCardsPerView() {
+    if (window.innerWidth > 1024) return 3;
+    if (window.innerWidth > 768) return 2;
+    return 1;
+}
 
-        function getCardsPerView() {
-            if (window.innerWidth > 1024) return 3;
-            if (window.innerWidth > 768) return 2;
-            return 1;
-        }
+function moveCarrossel(direction) {
+    if (!track || totalCards === 0) return;
+    
+    const cardsPerView = getCardsPerView();
+    const cardWidth = cards[0].offsetWidth + 20; 
+    const maxPosition = totalCards - cardsPerView;
 
-        function moveCarrossel(direction) {
-            if (!track || totalCards === 0) return;
+    currentPosition += direction;
 
-            const cardsPerView = getCardsPerView();
-            const cardWidth = cards[0].offsetWidth + 20;
-            const maxPosition = totalCards - cardsPerView;
+    if (currentPosition < 0) {
+        currentPosition = 0;
+    } else if (currentPosition > maxPosition) {
+        currentPosition = maxPosition;
+    }
 
-            currentPosition += direction;
+    const translateX = -currentPosition * cardWidth;
+    track.style.transform = `translateX(${translateX}px)`;
+}
 
-            if (currentPosition < 0) {
-                currentPosition = 0;
-            } else if (currentPosition > maxPosition) {
-                currentPosition = maxPosition;
-            }
+window.addEventListener('resize', () => {
+    currentPosition = 0;
+    if (track) track.style.transform = `translateX(0px)`;
+});
 
-            const translateX = -currentPosition * cardWidth;
-            track.style.transform = `translateX(${translateX}px)`;
-        }
+function atualizarContadorHeader() {
+    let carrinho = JSON.parse(localStorage.getItem('carrinhoCulture')) || [];
+    let totalItens = carrinho.reduce((acc, item) => acc + (item.quantidade || 1), 0);
+    
+    let elContador = document.getElementById('contador-carrinho');
+    if (elContador) {
+        elContador.innerText = totalItens;
+    }
+}
 
-        window.addEventListener('resize', () => {
-            currentPosition = 0;
-            if (track) track.style.transform = `translateX(0px)`;
+function abrirPesquisa() {
+    let termo = prompt("O que você está procurando?");
+    if (termo) {
+        alert(`Buscando por: ${termo}`);
+    }
+}
+
+function mostrarToast(mensagem) {
+    let toast = document.getElementById('toast-notification');
+
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'toast-notification';
+        document.body.appendChild(toast);
+    }
+
+    toast.innerHTML = `<span style="color: #ff3333; font-weight: bold;">✓</span> ${mensagem}`;
+    toast.classList.add('show');
+
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
+}
+
+function adicionarAoCarrinho(nome, preco, imagem) {
+    let carrinho = JSON.parse(localStorage.getItem('carrinhoCulture')) || [];
+
+    let itemExistente = carrinho.find(item => item.nome === nome);
+
+    if (itemExistente) {
+        itemExistente.quantidade += 1;
+    } else {
+        carrinho.push({
+            nome: nome,
+            preco: preco,
+            imagem: imagem,
+            quantidade: 1
         });
+    }
 
+    localStorage.setItem('carrinhoCulture', JSON.stringify(carrinho));
+    
+    atualizarContadorHeader();
+    mostrarToast(`"${nome}" foi adicionado ao seu carrinho!`);
+}
 
-        function adicionarAoCarrinho(nome, preco, imagem) {
-            let carrinho = JSON.parse(localStorage.getItem('carrinhoCulture')) || [];
+function carregarUsuarioLogado() {
+    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    const containerConta = document.querySelector('.account-text');
 
-            let itemExistente = carrinho.find(item => item.nome === nome);
+    if (usuarioLogado && containerConta) {
+        const primeiroNome = usuarioLogado.nome ? usuarioLogado.nome.split(' ')[0] : 'Usuário';
+        containerConta.innerHTML = `
+            <strong>Olá, ${primeiroNome}!</strong>
+            <small>Minha Conta</small>
+        `;
+    }
+}
 
-            if (itemExistente) {
-                itemExistente.quantidade += 1;
-            } else {
-                carrinho.push({
-                    nome: nome,
-                    preco: preco,
-                    imagem: imagem,
-                    quantidade: 1
-                });
+document.addEventListener('DOMContentLoaded', () => {
+    atualizarContadorHeader();
+    carregarUsuarioLogado();
+
+    document.querySelectorAll('.btn-adicionar').forEach(botao => {
+        botao.onclick = (event) => {
+            const card = event.target.closest('.tenis-card') || event.target.closest('.card');
+            
+            if (card) {
+                const nome = card.querySelector('h3, h4')?.innerText.trim() || 'Produto';
+                const preco = card.querySelector('.preco, .tenis-preco')?.innerText.trim() || 'R$ 0,00';
+                const imagem = card.querySelector('img')?.src || '';
+
+                adicionarAoCarrinho(nome, preco, imagem);
             }
+        };
+    });
+});
 
-            localStorage.setItem('carrinhoCulture', JSON.stringify(carrinho));
-
-
-            atualizarContadorHeader();
-
-            alert(`${nome} foi adicionado ao seu carrinho!`);
-        }
-
-        function atualizarContadorHeader() {
-            let carrinho = JSON.parse(localStorage.getItem('carrinhoCulture')) || [];
-            let totalItens = carrinho.reduce((acc, item) => acc + (item.quantidade || 1), 0);
-
-            let elContador = document.getElementById('contador-carrinho');
-            if (elContador) {
-                elContador.innerText = totalItens;
-            }
-        }
-
-        function abrirPesquisa() {
-            let termo = prompt("O que você está procurando?");
-            if (termo) {
-                alert(`Buscando por: ${termo}`);
-            }
-        }
-
-
-        function mostrarToast(mensagem) {
-            let toast = document.getElementById('toast-notification');
-
-
-            if (!toast) {
-                toast = document.createElement('div');
-                toast.id = 'toast-notification';
-                document.body.appendChild(toast);
-            }
-
-
-            toast.innerHTML = `<span style="color: #ff3333; font-weight: bold;">✓</span> ${mensagem}`;
-
-
-            toast.classList.add('show');
-
-
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-
-
-        function adicionarAoCarrinho(nome, preco, imagem) {
-            let carrinho = JSON.parse(localStorage.getItem('carrinhoCulture')) || [];
-
-            let itemExistente = carrinho.find(item => item.nome === nome);
-
-            if (itemExistente) {
-                itemExistente.quantidade += 1;
-            } else {
-                carrinho.push({
-                    nome: nome,
-                    preco: preco,
-                    imagem: imagem,
-                    quantidade: 1
-                });
-            }
-
-            localStorage.setItem('carrinhoCulture', JSON.stringify(carrinho));
-
-
-            atualizarContadorHeader();
-
-
-            mostrarToast(`"${nome}" foi adicionado ao seu carrinho!`);
-        }
-
-
-        document.addEventListener('DOMContentLoaded', () => {
-
-            atualizarContadorHeader();
-
-
-            document.querySelectorAll('.btn-adicionar').forEach(botao => {
-
-                botao.onclick = (event) => {
-                    const card = event.target.closest('.tenis-card') || event.target.closest('.card');
-
-                    if (card) {
-                        const nome = card.querySelector('h3, h4')?.innerText.trim() || 'Produto';
-                        const preco = card.querySelector('.preco, .tenis-preco')?.innerText.trim() || 'R$ 0,00';
-                        const imagem = card.querySelector('img')?.src || '';
-
-                        adicionarAoCarrinho(nome, preco, imagem);
-                    }
-                };
-            });
-        });
-    </script>
+</script>
 
 
 

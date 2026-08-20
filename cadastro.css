@@ -279,3 +279,52 @@ body {
 .register-footer a:hover {
     text-decoration: underline;
 }
+
+
+
+.register-card {
+    position: relative;
+}
+
+.btn-voltar {
+    position: absolute;
+    top: 18px;
+    left: 22px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    color: #8e9aaf;
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.btn-voltar i {
+    font-size: 14px;
+}
+
+.btn-voltar:hover {
+    color: #ffffff;
+    transform: translateX(-3px);
+}
+
+
+
+@media (max-width: 600px) {
+
+    .btn-voltar {
+        top: 16px;
+        left: 18px;
+        font-size: 13px;
+    }
+
+}

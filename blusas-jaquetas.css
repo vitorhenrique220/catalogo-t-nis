@@ -130,9 +130,7 @@ h1 {
 .search-box {
     display: flex;
     align-items: center;
-    border: 1px solid var(--cor-borda);
-    background-color: var(--bg-input);
-    border-radius: 6px;
+    border: 1px solid #ffffff;
     padding: 6px 12px;
     width: 280px;
 }
@@ -141,13 +139,13 @@ h1 {
     background: transparent;
     border: none;
     outline: none;
-    color: var(--cor-texto);
+    color: #fff;
     width: 100%;
     font-size: 13px;
 }
 
 .search-box input::placeholder {
-    color: var(--cor-texto-secundario);
+    color: #888;
 }
 
 .search-btn {
