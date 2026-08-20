@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (eAdmin) {
                         window.location.href = 'admin.html';
                     } else {
-                        window.location.href = 'inicio.html';
+                        window.location.href = 'index.html';
                     }
                 }, 1000);
             } else {
