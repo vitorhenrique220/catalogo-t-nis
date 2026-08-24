@@ -1,7 +1,6 @@
 let metodoSelecionado = 'credito';
 let bandeiraSelecionada = '';
 
-
 function atualizarTopoUsuario() {
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     const areaLoginTopo = document.getElementById('area-login-topo');
@@ -18,7 +17,6 @@ function atualizarTopoUsuario() {
         `;
     }
 }
-
 
 function mostrarToast(mensagem, tipo = 'sucesso') {
     let toast = document.getElementById('toast-notification');
@@ -60,7 +58,6 @@ function formatarMoeda(valor) {
         currency: 'BRL'
     });
 }
-
 
 function carregarCarrinho() {
     const carrinho = JSON.parse(localStorage.getItem('carrinhoCulture')) || [];
@@ -167,7 +164,6 @@ function obterTotalCarrinho() {
     return total;
 }
 
-
 function finalizarCompra() {
     const carrinho = JSON.parse(localStorage.getItem('carrinhoCulture')) || [];
 
@@ -195,6 +191,9 @@ function selecionarMetodo(metodo) {
 
     const areaCartao = document.getElementById('area-cartao');
     const areaPix = document.getElementById('area-pix');
+    const areaQRCode = document.getElementById('area-qrcode');
+
+    areaQRCode.style.display = 'none';
 
     if (metodo === 'pix') {
         areaCartao.style.display = 'none';
@@ -270,7 +269,7 @@ function simularPagamento() {
     if (metodoSelecionado === 'pix') {
         gerarQRCode();
         status.style.color = '#168a35';
-        status.innerText = '✓ QR Code fictício gerado para simulação.';
+        status.innerText = '✓ QR Code gerado para pagamento via PIX.';
         return;
     }
 
@@ -287,13 +286,13 @@ function simularPagamento() {
 
     if (numero.replace(/\D/g, '').length < 13) {
         status.style.color = '#d00000';
-        status.innerText = 'Digite um número de cartão válido para a simulação.';
+        status.innerText = 'Digite um número de cartão válido.';
         return;
     }
 
     if (!nome.trim()) {
         status.style.color = '#d00000';
-        status.innerText = 'Digite o nome do cartão.';
+        status.innerText = 'Digite o nome impresso no cartão.';
         return;
     }
 
@@ -309,9 +308,15 @@ function simularPagamento() {
         return;
     }
 
-    gerarQRCode();
     status.style.color = '#168a35';
-    status.innerText = '✓ Pagamento simulado aprovado.';
+    status.innerText = '✓ Compra finalizada com sucesso!';
+    
+    setTimeout(() => {
+        localStorage.removeItem('carrinhoCulture');
+        fecharPagamento();
+        carregarCarrinho();
+        mostrarToast('Pedido realizado com sucesso!', 'sucesso');
+    }, 1500);
 }
 
 function gerarQRCode() {
@@ -320,7 +325,7 @@ function gerarQRCode() {
 
     qrContainer.innerHTML = '';
     const total = obterTotalCarrinho();
-    const codigo = 'CULTURECOO-SIMULACAO-' + Date.now() + '-' + Math.floor(Math.random() * 999999);
+    const codigo = 'CULTURECOO-PIX-' + Date.now() + '-' + Math.floor(Math.random() * 999999);
 
     new QRCode(qrContainer, {
         text: codigo,
@@ -336,7 +341,7 @@ function gerarQRCode() {
     const valorQR = document.createElement('p');
     valorQR.style.fontWeight = 'bold';
     valorQR.style.marginTop = '10px';
-    valorQR.innerText = 'Valor simulado: ' + formatarMoeda(total);
+    valorQR.innerText = 'Valor total: ' + formatarMoeda(total);
 
     qrContainer.appendChild(valorQR);
 }
@@ -354,31 +359,27 @@ function executarBusca() {
     }
 }
 
+function atualizarHeaderUsuario() {
+    const areaLogin = document.getElementById('area-login-topo');
+    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+
+    if (areaLogin && usuarioLogado && usuarioLogado.nome) {
+        const primeiroNome = usuarioLogado.nome.split(' ')[0];
+        const paginaDestino = usuarioLogado.email === 'admin@loja.com' ? 'admin.html' : 'minha-conta.html';
+
+        areaLogin.href = paginaDestino;
+        areaLogin.innerHTML = `
+            <span class="icon-user">👤</span>
+            <div class="account-text">
+                <strong style="color: #ffffff;">Olá, ${primeiroNome}!</strong>
+                <small style="color: #cccccc;">Minha Conta</small>
+            </div>
+        `;
+    }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     atualizarTopoUsuario();
+    atualizarHeaderUsuario();
     carregarCarrinho();
 });
-
-  function atualizarHeaderUsuario() {
-        const areaLogin = document.getElementById('area-login-topo');
-        const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-
-        if (areaLogin && usuarioLogado && usuarioLogado.nome) {
-            const primeiroNome = usuarioLogado.nome.split(' ')[0];
-            const paginaDestino = usuarioLogado.email === 'admin@loja.com' ? 'admin.html' : 'minha-conta.html';
-
-            areaLogin.href = paginaDestino;
-            areaLogin.innerHTML = `
-                <span class="icon-user">👤</span>
-                <div class="account-text">
-                    <strong style="color: #ffffff;">Olá, ${primeiroNome}!</strong>
-                    <small style="color: #cccccc;">Minha Conta</small>
-                </div>
-            `;
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        atualizarHeaderUsuario();
-    });
