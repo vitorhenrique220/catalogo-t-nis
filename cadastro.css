@@ -1,0 +1,330 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-pagina, #000000);
+    color: var(--cor-texto, #ffffff);
+    padding: 20px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.register-card {
+    background: var(--bg-card, #0d0d12);
+    width: 100%;
+    max-width: 440px;
+    border-radius: 12px;
+    padding: 36px 40px;
+    border: 1px solid var(--cor-borda, #1a1a24);
+    color: var(--cor-texto, #ffffff);
+    box-shadow: var(--sombra-card, 0 10px 30px -10px rgba(0, 0, 0, 0.8));
+}
+
+.register-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: var(--bg-input, #12121a);
+    border: 1px solid var(--cor-borda, #1a1a24);
+    border-radius: 10px;
+    font-size: 20px;
+    color: var(--cor-destaque-brilho, #3b82f6); 
+    margin-bottom: 12px;
+}
+
+.register-header h1 {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 6px;
+    color: var(--cor-texto, #ffffff);
+    letter-spacing: -0.02em;
+}
+
+.register-header p {
+    color: var(--cor-texto-secundario, #8e9aaf);
+    font-size: 13px;
+}
+
+.social-register {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.btn-social {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid var(--cor-borda, #1a1a24);
+    background: var(--bg-input, #12121a);
+    color: var(--cor-texto-secundario, #8e9aaf);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-social:hover {
+    background: var(--bg-card, #0d0d12);
+    border-color: var(--cor-destaque, #2563eb);
+    color: var(--cor-texto, #ffffff);
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 18px 0;
+    color: var(--cor-texto-secundario, #8e9aaf);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--cor-borda, #1a1a24);
+}
+
+.divider span {
+    padding: 0 10px;
+}
+
+.alert {
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-bottom: 18px;
+    display: none;
+    text-align: center;
+}
+
+.alert-error {
+    background: var(--cor-destaque-suave, rgba(37, 99, 235, 0.15));
+    border: 1px solid var(--cor-destaque, #2563eb);
+    color: var(--cor-destaque-brilho, #3b82f6);
+}
+
+.alert-success {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid #10b981;
+    color: #6ee7b7;
+}
+
+.input-field {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--cor-texto, #ffffff);
+    margin-bottom: 6px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 14px;
+    color: var(--cor-texto-secundario, #8e9aaf);
+    font-size: 14px;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 12px 14px 12px 42px;
+    background: var(--bg-input, #12121a);
+    border: 1px solid var(--cor-borda, #1a1a24);
+    border-radius: 6px;
+    color: var(--cor-texto, #ffffff);
+    font-size: 14px;
+    outline: none;
+}
+
+.input-wrapper input:focus {
+    border-color: var(--cor-destaque, #2563eb);
+}
+
+.input-wrapper input:focus ~ .input-icon {
+    color: var(--cor-destaque-brilho, #3b82f6);
+}
+
+.btn-toggle-pass {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    color: var(--cor-texto-secundario, #8e9aaf);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 4px;
+}
+
+.btn-toggle-pass:hover {
+    color: var(--cor-texto, #ffffff);
+}
+
+.password-strength {
+    margin-top: 6px;
+    display: none;
+}
+
+.strength-bar-container {
+    height: 4px;
+    background: var(--cor-borda, #1a1a24);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0%;
+}
+
+.strength-text {
+    font-size: 11px;
+    color: var(--cor-texto-secundario, #8e9aaf);
+}
+
+.terms-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    color: var(--cor-texto-secundario, #8e9aaf);
+}
+
+.terms-option input {
+    margin-top: 2px;
+    accent-color: var(--cor-destaque, #2563eb); 
+    cursor: pointer;
+}
+
+.terms-option a {
+    color: var(--cor-destaque-brilho, #3b82f6);
+    text-decoration: none;
+}
+
+.terms-option a:hover {
+    text-decoration: underline;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background: var(--cor-destaque, #2563eb);
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-submit:hover {
+    background: var(--cor-destaque-hover, #1d4ed8);
+}
+
+.btn-submit:active {
+    transform: scale(0.98);
+}
+
+.register-footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--cor-texto-secundario, #8e9aaf);
+}
+
+.register-footer a {
+    color: var(--cor-destaque-brilho, #3b82f6);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-footer a:hover {
+    text-decoration: underline;
+}
+
+
+
+.register-card {
+    position: relative;
+}
+
+.btn-voltar {
+    position: absolute;
+    top: 18px;
+    left: 22px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    color: #8e9aaf;
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.btn-voltar i {
+    font-size: 14px;
+}
+
+.btn-voltar:hover {
+    color: #ffffff;
+    transform: translateX(-3px);
+}
+
+
+
+@media (max-width: 600px) {
+
+    .btn-voltar {
+        top: 16px;
+        left: 18px;
+        font-size: 13px;
+    }
+
+}

@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culture.COO</title>
+    <link rel="stylesheet" href="blusas-jaquetas.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230d0d0d'/><ellipse cx='50' cy='22' rx='20' ry='7' fill='none' stroke='%230088ff' stroke-width='5'/><path d='M68 42 C 60 34, 38 32, 30 45 C 20 60, 30 80, 52 80 C 66 80, 72 72, 72 72' fill='none' stroke='%230088ff' stroke-width='12' stroke-linecap='round' stroke-linejoin='round'/><path d='M30 48 L28 58' stroke='%230088ff' stroke-width='4' stroke-linecap='round'/><path d='M68 76 L68 84' stroke='%230088ff' stroke-width='4' stroke-linecap='round'/></svg>">
+
+<header class="topo-site">
+   
+    <div class="top-announcement-bar">
+        <button class="arrow-btn" aria-label="Anterior">&lt;</button>
+        <span class="announcement-text">FRETE GRÁTIS PARA TODO O BRASIL</span>
+        <button class="arrow-btn" aria-label="Próximo">&gt;</button>
+    </div>
+
+  
+    <div class="header-main-row">
+    
+        <div class="search-box">
+            <input type="text" placeholder="O que você está buscando?" id="campo-busca">
+            <button class="search-btn" onclick="executarBusca()" aria-label="Buscar">🔍</button>
+        </div>
+
+       
+        <div class="header-logo">
+       <a href="index.html"><img src="imagens/logo.png" alt="Culture.COO" class="logo"></a> 
+        </div>
+
+       
+        <div class="user-actions">
+            <a href="login.html" class="account-link">
+                <span class="icon-user">👤</span>
+                <div class="account-text">
+                    <strong>Olá! Faça login</strong>
+                    <small>Ou cadastre-se</small>
+                </div>
+            </a>
+
+            <a href="carrinho.html" class="cart-link" title="Meu Carrinho">
+                <div class="cart-icon-wrapper">
+                    🛒
+                    <span class="cart-badge" id="contador-carrinho">0</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+   
+    <nav class="header-nav-bar">
+        <div class="nav-container">
+        
+            <ul class="nav-links">
+                
+                <li><a href="tenis.html">TENIS</a></li>
+                <li><a href="blusas-jaquetas.html">BLUSAS</a></li>
+                <li><a href="camisas.html">CAMISAS</a></li>
+                <li><a href="calcas-shorts.html">CALCAS/SHORTS</a></li>
+                <li><a href="contato.html">CONTATO</a></li>
+                
+            </ul>
+        </div>
+    </nav>
+</header>
+    <main>
+        <h1 style="text-align: center;">Blusas & Jaquetas</h1>
+
+
+
+        
+            <div class="carrossel-track">
+        <div class="produtos">
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/55a33f18-7dd9-4aea-8f3e-8a1ef0e30ce0-61354db61ac247624c17135719722942-1024-1024.jpeg"
+                    alt="Jaqueta Nike">
+
+                <div class="info">
+                    <h3>Jaqueta Corteiz Vertigo Shuku</h3>
+                    <span class="preco">R$510,00
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/4fd3a1fc-38dc-482d-9279-cf48ec1ef2bf-61bcf57133d2a7334917246282502992-1024-1024.jpeg"
+                    alt="Jaqueta">
+
+                <div class="info">
+                    <h3>Jaqueta Corteiz Brazil Shuku</h3>
+                    <span class="preco">R$510,00
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/f329fb5a-fddb-4539-b2d1-c1c9184f7713-36b74bf35ca09108ab17121858980079-1024-1024.jpeg"
+                    alt="Nike Air Max 95">
+
+                <div class="info">
+                    <h3>Moletom C.P. Company Google</h3>
+                    <span class="preco">R$420,00
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/whatsapp-image-2026-01-09-at-16-49-14-1-a54d2b59d1dc1266b217680188997617-1024-1024.jpg"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Moletom Corteiz Island Puff Print</h3>
+                    <span class="preco">R$590,00
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/whatsapp-image-2026-01-09-at-16-49-14-ceca10978ba39b2b1917680187266431-1024-1024.jpg"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Moletom Corteiz Island Puff Print</h3>
+                    <span class="preco">R$590,00</span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/whatsapp-image-2026-01-09-at-16-49-12-1f80f7f03e6a13267f17680183521929-1024-1024.jpg"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Moletom Corteiz Island Puff Print</h3>
+                    <span class="preco">R$590,00</span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/whatsapp-image-2026-01-09-at-16-17-49-1-6733e0285ce4e1e72317679864162830-1024-1024.jpg"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Moletom Corteiz Island Puff Print</h3>
+                    <span class="preco">R$590,00</span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/whatsapp-image-2026-01-09-at-16-03-29-1-a68f21d7e283033f6d17679854617941-1024-1024.jpg"
+                    alt="Nike Air Max 95 Neon">
+
+                <div class="info">
+                    <h3>Moletom Corteiz Island Puff Print</h3>
+                    <span class="preco">R$590,00</span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/whatsapp-image-2025-06-21-at-12-10-57-be0d76ccbd8f639ca517505191425697-1024-1024.jpeg"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Moletom Corteiz Island Puff Print</h3>
+                    <span class="preco">R$590,00</span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/whatsapp-image-2025-06-20-at-13-50-48-868b6beff46646a4d717504383630835-1024-1024.jpeg"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Jaqueta Corteiz Wingz Shuku</h3>
+                    <span class="preco">R$ 550,00</span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/965edcb7-4250-4017-b996-7cb2f5307b2b-95bbcd9fb8dfeb20ea17411144221141-1024-1024.jpeg"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Jaqueta Supreme x Umbro</h3>
+                    <span class="preco">R$450,00
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/6b734970-43ef-42ee-86fc-73f1661c4f97-b8a75e33d17f05d31f17411117525617-1024-1024.jpeg"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Jaqueta Supreme x Ducati</h3>
+                    <span class="preco">R$450,00
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/08a78359-4545-4ff9-8079-089145566feb-0de110c1e4f591f03617411096448882-1024-1024.jpeg"
+                    alt="Nike Air Max 95 Neon">
+
+                <div class="info">
+                    <h3>Jaqueta Supreme x Umbro (SS23)</h3>
+                    <span class="preco">R$450,00
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/d1b9fb34-6fd8-4a33-ab56-4847ee5dfcfd-555185d7fc26b6c4d617412103149592-1024-1024.jpeg"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Jaqueta Supreme Vanson Leather Star</h3>
+                    <span class="preco">R$750,00
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/7250d6c4-dcec-47ea-a0ef-fe45397a7b6d-9fc458c4db0dc5579a17412083129835-1024-1024.jpeg"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Jaqueta Supreme Milano Half Zip Pullover</h3>
+                    <span class="preco">R$500,00
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/whatsapp-image-2025-01-07-at-19-49-35-1509579325e18f6f5517362903171463-1024-1024.jpeg"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Moletom Denim Tears The Cotton Wreath</h3>
+                    <span class="preco">R$450,00
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/whatsapp-image-2025-01-07-at-19-55-34-114a116fce5acd627717362905780729-1024-1024.jpeg"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Moletom Denim Tears The Cotton Wreath</h3>
+                    <span class="preco">R$450,00
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/whatsapp-image-2025-01-08-at-20-28-49-e3ffa238f27333486d17363792059803-1024-1024.jpeg"
+                    alt="Nike Air Max 95 Neon">
+
+                <div class="info">
+                    <h3>Moletom Denim Tears The Cotton Wreath</h3>
+                    <span class="preco">R$450,00
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/whatsapp-image-2025-01-08-at-20-28-48-a0601a7f56b600484b17363792700384-1024-1024.jpeg"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Moletom Denim Tears The Cotton Wreath</h3>
+                    <span class="preco">R$450,00
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/whatsapp-image-2025-01-08-at-22-18-56-caac35e45cfaca4f1c17363855628928-1024-1024.jpeg"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Moletom Denim Tears The Cotton Wreath</h3>
+                    <span class="preco">R$450,00
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://cdn-images.farfetch-contents.com/32/85/70/94/32857094_67082367_1000.jpg"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Moletom Stone Island Capuz com Zíper</h3>
+                    <span class="preco">R$ 10.000,00</span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/2967bb63-fa39-446d-bb20-1e80bebe7401-f21135491ad31ae8cd17121888949221-1024-1024.jpeg"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Moletom C.P. Company Light</h3>
+                    <span class="preco">R$ 550,00</span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/whatsapp-image-2024-07-08-at-20-53-36-3-e59db228d41737989317204829249418-1024-1024.jpeg"
+                    alt="Nike Air Max 95 Neon">
+
+                <div class="info">
+                    <h3>Jaqueta Corteiz Shotta</h3>
+                    <span class="preco">R$470,00
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/whatsapp-image-2024-05-02-at-21-31-40-fcffc8877b762a9f8117146963231001-1024-1024.jpeg"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Jaqueta Corteiz Spring</h3>
+                    <span class="preco">R$510,00
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/99bb1ca0-b503-4752-a54f-842459612519-3ce802e57b5d76f6c217078432326211-1024-1024.jpeg"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Moletom Supreme x True Religion Zip Up</h3>
+                    <span class="preco">R$560,00
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/6d51f9b8-ee33-4f10-b7a2-cd33d72426b3-8ff63976ebbcfa75ab17100903728465-1024-1024.jpeg"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Jaqueta Nike x Nocta Tech Fleece</h3>
+                    <span class="preco">R$490,00
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://edhardyoficial.com.br/cdn/shop/files/BRILHO-MOCKUP-CRUZ.jpg?v=1781180643&width=713"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Moletom Zip Up Preto "Cruz" Ed Hardy x Matuê</h3>
+                    <span class="preco">R$649,99</span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://edhardyoficial.com.br/cdn/shop/files/New_Project.jpg?v=1781181064&width=713"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Moletom Zip Up Preto "By Matuê" Ed Hardy x Matuê</h3>
+                    <span class="preco">R$579,99</span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://edhardyoficial.com.br/cdn/shop/files/HoodieMasc-Frente.jpg?v=1779303204&width=713"
+                    alt="Moletom">
+
+                <div class="info">
+                    <h3>Blusa de Moletom com Capuz "Wild Love" Chumbo</h3>
+                    <span class="preco">R$499,00</span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://droper-lapse.us-southeast-1.linodeobjects.com/20251107164248678-533.webp"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Moletom Zip Up Off White "Fortal" Ed Hardy x Matuê</h3>
+                    <span class="preco">R$499,99</span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://edhardyoficial.com.br/cdn/shop/files/New_Project_3.jpg?v=1783079684&width=713"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Blusa de Moletom com Capuz Preto "Classic Tiger"</h3>
+                    <span class="preco">R$399,00</span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://edhardyoficial.com.br/cdn/shop/files/CREWNECK-EDHARDY-PRETO-FRENTE2.jpg?v=1779305873&width=713"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Moletom Crewneck "Tiger OG" Diamanté</h3>
+                    <span class="preco">R$399,00</span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+    </main>
+
+
+
+    <main>
+        <h1 style="text-align: center;">Feminino</h1>
+
+        <div class="produtos">
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/03c1c3cb-3ba8-4b41-b210-735aa83128b2-d3f082b8a32657c47017240177442147-1024-1024.jpeg"
+                    alt="Jaqueta Nike">
+
+                <div class="info">
+                    <h3>Jaqueta Puffer Feminina Trapstar Decoded</h3>
+                    <span class="preco">R$680,00
+
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/88a2b9e1-af4b-41a2-b488-4d017106d6c9-11d44d568c480b32f517240176686929-1024-1024.jpeg"
+                    alt="Jaqueta">
+
+                <div class="info">
+                    <h3>Jaqueta Puffer Feminina Trapstar Decoded</h3>
+                    <span class="preco">R$680,00
+
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/1ce7ce12-3669-4f68-81f6-f6f733d318c4-a66d62163893c0197117240175421662-1024-1024.jpeg"
+                    alt="Nike Air Max 95">
+
+                <div class="info">
+                    <h3>Jaqueta Puffer Feminina Trapstar Detachable</h3>
+                    <span class="preco">R$680,00
+
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/9b5d25e2-74d7-48dc-aa6f-df7e5fced6c1-02550531a717bbbb0617240174551724-1024-1024.jpeg"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Jaqueta Puffer Feminina Trapstar Shiny</h3>
+                    <span class="preco">R$680,00
+
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://acdn-us.mitiendanube.com/stores/003/950/561/products/6eac2c06-6273-44e7-8f60-ca4199b01c44-e508c0c7a70886623f17240165131235-1024-1024.jpeg"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Jaqueta Puffer Feminina Trapstar Detachable</h3>
+                    <span class="preco">R$680,00
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://edhardyoficial.com.br/cdn/shop/files/TULE_4e7c7a92-f328-4c95-953d-8297c9ebf0c3.png?v=1761921841&width=713"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Tule Feminino Bege "Tattooed Skin" Ed Hardy x Matuê</h3>
+                    <span class="preco">R$299,99</span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+          
+
+            <div class="card">
+                <img src="https://edhardyoficial.com.br/cdn/shop/files/NewProject_11_d62a4c2f-4bd7-4926-9628-e0f44102ded8.jpg?v=1783426693&width=713"
+                    alt="Nike Air Max 95 Neon">
+
+                <div class="info">
+                    <h3>Jaqueta "Wild" Preta</h3>
+                    <span class="preco">R$219,00</span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://edhardyoficial.com.br/cdn/shop/files/NewProject_9.jpg?v=1783426201&width=713"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Jaqueta "Wild" Off White</h3>
+                    <span class="preco">R$219,00</span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbIHHU3HLyWny2H1DbhrpKdmoCEH4_xjiqW8ov2f3z57gpxuX_24RZZAky&s=10"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>jaqueta tracksuit juicy preta</h3>
+                    <span class="preco">R$199,90</span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://shop2gether.fbitsstatic.net/img/p/jaqueta-feminina-firebird-preto-157192/356422.jpg?w=1225&h=1633&v=no-value"
+                    alt="Produto">
+
+                <div class="info">
+                    <h3>Jaqueta Feminina Firebird Preto Adidas Originals
+                    </h3>
+                    <span class="preco">
+                        R$449,99
+                    </span>
+                     <button class="btn-adicionar">Adicionar ao Carrinho</button>     
+                </div>
+            </div>
+
+           
+
+
+    </main>
+
+
+     <footer class="rodape">
+        <div class="footer-conteudo">
+            <h3>Culture.coO</h3>
+            <p>Moda com estilo e qualidade para você.</p>
+            <p>📞 (41) 99999-9999</p>
+            <p>📧 contato@Culture.com.br</p>
+            <p>&copy; 2026 Culture.coO - Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+
+
+     <script>
+    
+    let currentPosition = 0;
+const track = document.getElementById('carrosselTrack');
+const cards = document.querySelectorAll('.tenis-card, .card'); 
+const totalCards = cards.length;
+
+function getCardsPerView() {
+    if (window.innerWidth > 1024) return 3;
+    if (window.innerWidth > 768) return 2;
+    return 1;
+}
+
+function moveCarrossel(direction) {
+    if (!track || totalCards === 0) return;
+    
+    const cardsPerView = getCardsPerView();
+    const cardWidth = cards[0].offsetWidth + 20; 
+    const maxPosition = totalCards - cardsPerView;
+
+    currentPosition += direction;
+
+    if (currentPosition < 0) {
+        currentPosition = 0;
+    } else if (currentPosition > maxPosition) {
+        currentPosition = maxPosition;
+    }
+
+    const translateX = -currentPosition * cardWidth;
+    track.style.transform = `translateX(${translateX}px)`;
+}
+
+window.addEventListener('resize', () => {
+    currentPosition = 0;
+    if (track) track.style.transform = `translateX(0px)`;
+});
+
+function atualizarContadorHeader() {
+    let carrinho = JSON.parse(localStorage.getItem('carrinhoCulture')) || [];
+    let totalItens = carrinho.reduce((acc, item) => acc + (item.quantidade || 1), 0);
+    
+    let elContador = document.getElementById('contador-carrinho');
+    if (elContador) {
+        elContador.innerText = totalItens;
+    }
+}
+
+function abrirPesquisa() {
+    let termo = prompt("O que você está procurando?");
+    if (termo) {
+        alert(`Buscando por: ${termo}`);
+    }
+}
+
+function mostrarToast(mensagem) {
+    let toast = document.getElementById('toast-notification');
+
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'toast-notification';
+        document.body.appendChild(toast);
+    }
+
+    toast.innerHTML = `<span style="color: #ff3333; font-weight: bold;">✓</span> ${mensagem}`;
+    toast.classList.add('show');
+
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
+}
+
+function adicionarAoCarrinho(nome, preco, imagem) {
+    let carrinho = JSON.parse(localStorage.getItem('carrinhoCulture')) || [];
+
+    let itemExistente = carrinho.find(item => item.nome === nome);
+
+    if (itemExistente) {
+        itemExistente.quantidade += 1;
+    } else {
+        carrinho.push({
+            nome: nome,
+            preco: preco,
+            imagem: imagem,
+            quantidade: 1
+        });
+    }
+
+    localStorage.setItem('carrinhoCulture', JSON.stringify(carrinho));
+    
+    atualizarContadorHeader();
+    mostrarToast(`"${nome}" foi adicionado ao seu carrinho!`);
+}
+
+function carregarUsuarioLogado() {
+    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    const containerConta = document.querySelector('.account-text');
+
+    if (usuarioLogado && containerConta) {
+        const primeiroNome = usuarioLogado.nome ? usuarioLogado.nome.split(' ')[0] : 'Usuário';
+        containerConta.innerHTML = `
+            <strong>Olá, ${primeiroNome}!</strong>
+            <small>Minha Conta</small>
+        `;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    atualizarContadorHeader();
+    carregarUsuarioLogado();
+
+    document.querySelectorAll('.btn-adicionar').forEach(botao => {
+        botao.onclick = (event) => {
+            const card = event.target.closest('.tenis-card') || event.target.closest('.card');
+            
+            if (card) {
+                const nome = card.querySelector('h3, h4')?.innerText.trim() || 'Produto';
+                const preco = card.querySelector('.preco, .tenis-preco')?.innerText.trim() || 'R$ 0,00';
+                const imagem = card.querySelector('img')?.src || '';
+
+                adicionarAoCarrinho(nome, preco, imagem);
+            }
+        };
+    });
+});
+
+</script>
+
+</body>
+
+</html>

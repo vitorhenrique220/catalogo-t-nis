@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Conta | Culture.COO</title>
+    <link rel="stylesheet" href="minha-conta.css">
+        <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230d0d0d'/><ellipse cx='50' cy='22' rx='20' ry='7' fill='none' stroke='%230088ff' stroke-width='5'/><path d='M68 42 C 60 34, 38 32, 30 45 C 20 60, 30 80, 52 80 C 66 80, 72 72, 72 72' fill='none' stroke='%230088ff' stroke-width='12' stroke-linecap='round' stroke-linejoin='round'/><path d='M30 48 L28 58' stroke='%230088ff' stroke-width='4' stroke-linecap='round'/><path d='M68 76 L68 84' stroke='%230088ff' stroke-width='4' stroke-linecap='round'/></svg>">
+</head>
+<body>
+
+   <header class="topo-site">
+
+    <div class="top-announcement-bar">
+        <button class="arrow-btn" aria-label="Anterior">&lt;</button>
+        <span class="announcement-text">FRETE GRÁTIS PARA TODO O BRASIL</span>
+        <button class="arrow-btn" aria-label="Próximo">&gt;</button>
+    </div>
+
+    <div class="header-main-row">
+        <div class="search-box">
+            <input type="text" placeholder="O que você está buscando?" id="campo-busca">
+            <button class="search-btn" onclick="executarBusca()" aria-label="Buscar">🔍</button>
+        </div>
+
+        <div class="header-logo">
+            <a href="index.html"><img src="imagens/logo.png" alt="Culture.COO" class="logo"></a> 
+        </div>
+
+        <div class="user-actions">
+            
+            <a href="login.html" class="account-link" id="area-login-topo">
+             <span class="icon-user">👤</span>
+        <div class="account-text">
+                 <strong>Olá! Faça login</strong>
+                 <small>Ou cadastre-se</small>
+            </div>
+</a>
+
+            <a href="carrinho.html" class="cart-link" title="Meu Carrinho">
+                <div class="cart-icon-wrapper">
+                    🛒
+                    <span class="cart-badge" id="contador-carrinho">0</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <nav class="header-nav-bar">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="tenis.html">TENIS</a></li>
+                <li><a href="blusas-jaquetas.html">BLUSAS</a></li>
+                <li><a href="camisas.html">CAMISAS</a></li>
+                <li><a href="calcas-shorts.html">CALCAS/SHORTS</a></li>
+                <li><a href="contato.html">CONTATO</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+
+    <main class="account-container">
+        <div class="account-header">
+            <h1>Minha Conta</h1>
+            <p class="account-subtitle">Gerencie suas informações, pedidos e preferências</p>
+        </div>
+
+        <div class="account-grid">
+            <section class="account-card profile-card">
+                <div class="card-header">
+                    <div class="avatar-container">
+                        <img id="avatar-img" src="" alt="Foto de Perfil" class="avatar-image" style="display: none;">
+                        <div class="avatar-circle" id="user-avatar">C</div>
+                        <label for="upload-avatar" class="avatar-upload-btn" title="Alterar foto">
+                            📷
+                        </label>
+                        <input type="file" id="upload-avatar" accept="image/*" style="display: none;">
+                    </div>
+                    
+                    <div class="user-main-info">
+                        <h2 id="user-nome-header">Carregando...</h2>
+                        <span class="user-badge admin-badge" id="tag-admin" style="display: none;">⚡ Administrador</span>
+                    </div>
+                </div>
+
+                <div class="card-content">
+                    <div class="info-group">
+                        <label>Nome Completo</label>
+                        <p id="user-nome">Carregando...</p>
+                    </div>
+
+                    <div class="info-group">
+                        <label>E-mail Cadastrado</label>
+                        <p id="user-email">Carregando...</p>
+                    </div>
+
+                    <div class="info-group">
+                        <label>Status da Conta</label>
+                        <p class="status-active">● Ativa</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="account-card stats-card">
+                <h3>Resumo de Atividades</h3>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <span class="stat-number" id="total-pedidos">0</span>
+                        <span class="stat-label">Pedidos Realizados</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number" id="itens-favoritos">0</span>
+                        <span class="stat-label">Itens Salvos</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="account-card actions-card">
+                <h3>Painel de Ações</h3>
+                <div class="actions-wrapper">
+                    <a id="btn-painel-admin" href="admin.html" class="btn-primary" style="display: none;">
+                        Acessar Painel Admin
+                    </a>
+
+                    <a href="meus-pedidos.html" class="btn-secondary">
+                        Meus Pedidos
+                    </a>
+
+                    <a href="index.html" class="btn-secondary">
+                        Ir para a Loja
+                    </a>
+
+                    <button id="btn-sair" class="btn-danger">
+                        Sair da Conta
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="rodape">
+        <div class="footer-conteudo">
+            <p>&copy; 2026 Culture.COO Streetwear. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="minha-conta.js"></script>
+</body>
+</html>
