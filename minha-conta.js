@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // --- 1. ATUALIZA O TOPO DA PÁGINA (HEADER) ---
+
     const areaLoginTopo = document.getElementById('area-login-topo');
     if (areaLoginTopo && usuarioLogado.nome) {
         const primeiroNome = usuarioLogado.nome.split(' ')[0];
@@ -15,13 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
         areaLoginTopo.innerHTML = `
             <span class="icon-user">👤</span>
             <div class="account-text">
-                <strong style="color: #0088ff;">Olá, ${primeiroNome}</strong>
-                <small>Minha Conta</small>
+                <strong style="color: #ffffff;">Olá, ${primeiroNome}!</strong>
+                    <small style="color: #cccccc;">Minha Conta</small>
             </div>
         `;
     }
 
-    // --- 2. PREENCHE OS DADOS DO PAINEL MINHA CONTA ---
+  
     const elNome = document.getElementById('user-nome');
     const elEmail = document.getElementById('user-email');
     const elHeaderNome = document.getElementById('user-nome-header');
@@ -34,12 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (elEmail) elEmail.textContent = emailUsuario;
     if (elHeaderNome) elHeaderNome.textContent = nomeUsuario;
 
-    // Inicial do nome no Avatar
+
     if (elAvatarCircle && usuarioLogado.nome) {
         elAvatarCircle.textContent = usuarioLogado.nome.charAt(0).toUpperCase();
     }
 
-    // --- 3. CARREGA E ALTERA FOTO DE PERFIL ---
     const avatarImg = document.getElementById('avatar-img');
     const fotoSalva = localStorage.getItem(`avatar_${usuarioLogado.email}`);
     if (fotoSalva && avatarImg && elAvatarCircle) {
@@ -68,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 4. PERMISSÕES DE ADMINISTRADOR ---
+   
     if (usuarioLogado.email === 'admin@loja.com') {
         const tagAdmin = document.getElementById('tag-admin');
         const btnAdmin = document.getElementById('btn-painel-admin');
@@ -77,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (btnAdmin) btnAdmin.style.display = 'block';
     }
 
-    // --- 5. BOTAO SAIR (LOGOUT) ---
+
     const btnSair = document.getElementById('btn-sair');
     if (btnSair) {
         btnSair.addEventListener('click', () => {
@@ -85,4 +84,49 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = 'login.html';
         });
     }
+});
+
+const uploadInput = document.getElementById('upload-avatar');
+const avatarImg = document.getElementById('avatar-img');
+const userAvatar = document.getElementById('user-avatar');
+const btnRemover = document.getElementById('btn-remover-avatar');
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const fotoSalva = localStorage.getItem('userFoto');
+    if (fotoSalva) {
+        avatarImg.src = fotoSalva;
+        avatarImg.style.display = 'block';
+        userAvatar.style.display = 'none';
+        btnRemover.style.display = 'flex';
+    }
+});
+
+
+uploadInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const base64Image = event.target.result;
+            avatarImg.src = base64Image;
+            avatarImg.style.display = 'block';
+            userAvatar.style.display = 'none';
+            btnRemover.style.display = 'flex';
+            
+          
+            localStorage.setItem('userFoto', base64Image);
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+btnRemover.addEventListener('click', () => {
+    avatarImg.src = '';
+    avatarImg.style.display = 'none';
+    userAvatar.style.display = 'flex';
+    btnRemover.style.display = 'none';
+    uploadInput.value = '';
+
+    localStorage.removeItem('userFoto');
 });

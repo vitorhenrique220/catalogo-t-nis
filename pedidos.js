@@ -8,8 +8,8 @@ function atualizarTopoUsuario() {
         areaLoginTopo.innerHTML = `
             <span class="icon-user">👤</span>
             <div class="account-text">
-                <strong style="color: #0088ff;">Olá, ${primeiroNome}</strong>
-                <small>Minha Conta</small>
+             <strong style="color: #ffffff;">Olá, ${primeiroNome}!</strong>
+                    <small style="color: #cccccc;">Minha Conta</small>
             </div>
         `;
     }

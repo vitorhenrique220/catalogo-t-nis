@@ -360,19 +360,84 @@ h1 {
     margin-bottom: 20px;
 }
 
-.avatar-circle {
-    width: 64px;
-    height: 64px;
-    background: linear-gradient(135deg, var(--cor-destaque), #004488);
+
+.avatar-container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+}
+
+
+.avatar-image {
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--cor-destaque);
+}
+
+
+.avatar-circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--cor-destaque), #004488);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.8rem;
     font-weight: 800;
     color: #ffffff;
-    text-transform: uppercase;
     border: 2px solid var(--cor-borda);
+}
+
+
+.avatar-upload-btn {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    background-color: var(--cor-destaque);
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
+    border: 2px solid var(--bg-card);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.avatar-upload-btn:hover {
+    background-color: var(--cor-destaque-hover);
+    transform: scale(1.1);
+}
+
+
+.avatar-remove-btn {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background-color: #ef4444;
+    color: #fff;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid var(--bg-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 11px;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.avatar-remove-btn:hover {
+    background-color: #dc2626;
+    transform: scale(1.1);
 }
 
 .user-main-info h2 {

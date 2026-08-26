@@ -693,8 +693,8 @@ function carregarUsuarioLogado() {
     if (usuarioLogado && containerConta) {
         const primeiroNome = usuarioLogado.nome ? usuarioLogado.nome.split(' ')[0] : 'Usuário';
         containerConta.innerHTML = `
-            <strong>Olá, ${primeiroNome}!</strong>
-            <small>Minha Conta</small>
+           <strong style="color: #ffffff;">Olá, ${primeiroNome}!</strong>
+                    <small style="color: #cccccc;">Minha Conta</small>
         `;
     }
 }
