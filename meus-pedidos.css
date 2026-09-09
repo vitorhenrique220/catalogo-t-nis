@@ -121,7 +121,9 @@ h1 {
     max-height: 80px; 
     width: auto;
     display: block;
+    filter: hue-rotate(-20deg) brightness(1.5) saturate(1.2);
 }
+
 
 .search-box {
     display: flex;
