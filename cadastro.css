@@ -320,11 +320,17 @@ body {
 
 
 @media (max-width: 600px) {
-
-    .btn-voltar {
-        top: 16px;
-        left: 18px;
-        font-size: 13px;
+    body {
+        padding: 12px;
     }
 
-}
+    .register-card {
+        padding: 24px 18px;
+    }
+
+    .btn-voltar {
+        top: 14px;
+        left: 14px;
+        font-size: 12px;
+    }
+}

@@ -324,3 +324,32 @@ body {
   color: #71717a;
   font-size: 0.85rem;
 }
+
+@media (max-width: 768px) {
+  .top-announcement-bar {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .carrinho-container {
+    width: 95%;
+    padding: 0 10px;
+    margin: 20px auto;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tabela-admin {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .btn-adicionar {
+    width: 100%;
+  }
+}
+

@@ -170,3 +170,14 @@ body {
 .forgot-footer a:hover {
     color: var(--cor-destaque-brilho, #3b82f6);
 }
+
+@media (max-width: 600px) {
+    body {
+        padding: 12px;
+    }
+
+    .forgot-card {
+        padding: 24px 18px;
+    }
+}
+
