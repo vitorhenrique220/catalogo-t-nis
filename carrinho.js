@@ -1,5 +1,7 @@
 let metodoSelecionado = 'credito';
 let bandeiraSelecionada = '';
+let timerPagamento = null;
+let segundosRestantes = 600; // 10 minutos
 
 function atualizarTopoUsuario() {
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
@@ -172,12 +174,46 @@ function finalizarCompra() {
         return;
     }
 
+    // Verificar se o usuário está logado
+    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    if (!usuarioLogado || !usuarioLogado.nome) {
+        document.getElementById('modal-criar-conta').style.display = 'flex';
+        return;
+    }
+
     const total = obterTotalCarrinho();
     document.getElementById('valor-pagamento').innerText = formatarMoeda(total);
     document.getElementById('modal-pagamento').style.display = 'flex';
 
     selecionarMetodo('credito');
     calcularParcelamento();
+    iniciarTimerPagamento();
+}
+
+function iniciarTimerPagamento() {
+    clearInterval(timerPagamento);
+    segundosRestantes = 600;
+    atualizarDisplayTimer();
+
+    timerPagamento = setInterval(() => {
+        segundosRestantes--;
+        atualizarDisplayTimer();
+
+        if (segundosRestantes <= 0) {
+            clearInterval(timerPagamento);
+            fecharPagamento();
+            mostrarToast('Tempo de pagamento expirado. Tente novamente.', 'aviso');
+        }
+    }, 1000);
+}
+
+function atualizarDisplayTimer() {
+    const el = document.getElementById('timer-pagamento');
+    if (!el) return;
+    const min = Math.floor(segundosRestantes / 60).toString().padStart(2, '0');
+    const seg = (segundosRestantes % 60).toString().padStart(2, '0');
+    el.innerText = `⏱ ${min}:${seg}`;
+    el.style.color = segundosRestantes <= 60 ? '#ff4444' : '#00cc66';
 }
 
 function selecionarMetodo(metodo) {
@@ -347,6 +383,7 @@ function gerarQRCode() {
 }
 
 function fecharPagamento() {
+    clearInterval(timerPagamento);
     document.getElementById('modal-pagamento').style.display = 'none';
     document.getElementById('area-qrcode').style.display = 'none';
     document.getElementById('status-pagamento').innerText = '';

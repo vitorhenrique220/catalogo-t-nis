@@ -125,12 +125,32 @@ h1 {
 }
 
 
+/* ─── BARRA DE BUSCA ─────────────────────────────────────────── */
 .search-box {
     display: flex;
     align-items: center;
-    border: 1px solid #ffffff;
-    padding: 6px 12px;
-    width: 280px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50px;
+    padding: 8px 14px;
+    width: 300px;
+    gap: 8px;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    position: relative;
+}
+
+.search-box:focus-within {
+    border-color: var(--cor-destaque-brilho);
+    background: rgba(37, 99, 235, 0.08);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.search-box::before {
+    content: '🔍';
+    font-size: 14px;
+    opacity: 0.5;
+    flex-shrink: 0;
+    pointer-events: none;
 }
 
 .search-box input {
@@ -139,20 +159,174 @@ h1 {
     outline: none;
     color: #fff;
     width: 100%;
-    font-size: 13px;
+    font-size: 13.5px;
+    letter-spacing: 0.2px;
 }
 
 .search-box input::placeholder {
-    color: #888;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 13px;
 }
 
 .search-btn {
-    background: transparent;
+    background: var(--cor-destaque);
     border: none;
-    color: var(--cor-destaque-brilho); 
+    color: #fff;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 13px;
+    border-radius: 50px;
+    padding: 4px 12px;
+    font-weight: 600;
+    flex-shrink: 0;
+    transition: background 0.2s, transform 0.15s;
+    line-height: 1.6;
 }
+
+.search-btn:hover {
+    background: var(--cor-destaque-hover);
+    transform: scale(1.05);
+}
+
+/* ─── DROPDOWN DE BUSCA ──────────────────────────────────────── */
+#busca-dropdown {
+    display: none;
+    position: absolute;
+    z-index: 99999;
+    background: #0f0f1a;
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    border-radius: 14px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(59,130,246,0.1);
+    overflow: hidden;
+    max-height: 480px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #2563eb #0f0f1a;
+}
+
+.busca-header-results {
+    padding: 10px 16px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.03);
+}
+
+.busca-header-results strong { color: var(--cor-destaque-brilho); }
+
+.busca-lista {
+    list-style: none;
+    padding: 6px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.busca-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.busca-item:hover { background: rgba(37, 99, 235, 0.12); }
+
+.busca-item img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.08);
+    flex-shrink: 0;
+    background: #111;
+}
+
+.busca-item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.busca-item-nome {
+    font-size: 13.5px;
+    color: #eee;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.busca-item-nome mark {
+    background: rgba(37, 99, 235, 0.35);
+    color: var(--cor-destaque-brilho);
+    border-radius: 3px;
+    padding: 0 2px;
+}
+
+.busca-item-preco {
+    font-size: 12px;
+    color: #00cc66;
+    font-weight: 600;
+}
+
+.busca-item-btn {
+    background: rgba(37, 99, 235, 0.15);
+    border: 1px solid rgba(37, 99, 235, 0.3);
+    color: var(--cor-destaque-brilho);
+    border-radius: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background 0.2s, transform 0.15s;
+    flex-shrink: 0;
+}
+
+.busca-item-btn:hover {
+    background: var(--cor-destaque);
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.busca-vazio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 28px 20px;
+    color: rgba(255,255,255,0.4);
+    font-size: 13px;
+    text-align: center;
+}
+
+.busca-vazio span { font-size: 32px; }
+
+.busca-ver-mais {
+    padding: 10px 16px;
+    font-size: 12px;
+    color: var(--cor-destaque-brilho);
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    opacity: 0.75;
+}
+
+.busca-highlight {
+    outline: 2px solid var(--cor-destaque-brilho);
+    outline-offset: 4px;
+    border-radius: 12px;
+    animation: pulso-busca 0.5s ease-in-out 3;
+}
+
+@keyframes pulso-busca {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(59,130,246,0.5); }
+    50%       { box-shadow: 0 0 0 10px rgba(59,130,246,0); }
+}
+
+
 
 .user-actions {
     display: flex;
@@ -1307,5 +1481,394 @@ h1 {
             }
         }
 
-        
-   
+/* ===== TIMER DE PAGAMENTO ===== */
+.timer-pagamento-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f0fff4;
+    border: 2px solid #00cc66;
+    border-radius: 10px;
+    padding: 10px 16px;
+    margin-bottom: 18px;
+}
+
+#timer-pagamento {
+    font-size: 22px;
+    font-weight: 700;
+    color: #00cc66;
+    font-family: monospace;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.timer-label {
+    font-size: 13px;
+    color: #555;
+}
+
+/* ===== MODAL CRIAR CONTA ===== */
+#modal-criar-conta {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.82);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.modal-criar-conta-box {
+    background: #fff;
+    color: #111;
+    width: 100%;
+    max-width: 440px;
+    border-radius: 20px;
+    padding: 36px 32px;
+    box-sizing: border-box;
+    box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    text-align: center;
+    position: relative;
+}
+
+.modal-criar-conta-box .btn-x-pagamento {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+}
+
+.criar-conta-icon {
+    font-size: 52px;
+    margin-bottom: 12px;
+}
+
+.modal-criar-conta-box h2 {
+    font-size: 26px;
+    margin: 0 0 8px;
+}
+
+.criar-conta-acoes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.btn-criar-conta-modal {
+    display: block;
+    background: #0088ff;
+    color: #fff;
+    text-decoration: none;
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    transition: background 0.2s;
+}
+
+.btn-criar-conta-modal:hover {
+    background: #006ecc;
+}
+
+.btn-login-modal {
+    display: block;
+    background: transparent;
+    color: #0088ff;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    border: 2px solid #0088ff;
+    transition: all 0.2s;
+}
+
+.btn-login-modal:hover {
+    background: #0088ff;
+    color: #fff;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVIDADE GLOBAL — MOBILE FIRST
+   968px (tablet) | 768px (mobile) | 480px (mobile pequeno)
+   ══════════════════════════════════════════════════════════════ */
+
+/* ─── BOTÃO HAMBÚRGUER ──────────────────────────────────────── */
+#btn-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    z-index: 1100;
+    flex-shrink: 0;
+}
+
+#btn-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+}
+
+#btn-hamburger.ativo span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+#btn-hamburger.ativo span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+#btn-hamburger.ativo span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ─── OVERLAY DO MENU MOBILE ────────────────────────────────── */
+#menu-mobile-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 999;
+    backdrop-filter: blur(2px);
+}
+
+#menu-mobile-overlay.visivel { display: block; }
+
+/* ─── BOTÃO DE BUSCA MOBILE ─────────────────────────────────── */
+#btn-busca-mobile {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.7);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 4px 6px;
+    flex-shrink: 0;
+    display: none;
+    align-items: center;
+}
+
+/* ════════════ TABLET: até 968px ═══════════════════════════════ */
+@media (max-width: 968px) {
+    .search-box { width: 220px; }
+    .header-main-row { padding: 12px 20px; }
+    .nav-links { gap: 16px; }
+    .grade-produtos, .produtos-grid { grid-template-columns: repeat(2, 1fr); }
+    .tenis-card, .card { min-width: 200px; max-width: 220px; }
+}
+
+/* ════════════ MOBILE: até 768px ═══════════════════════════════ */
+@media (max-width: 768px) {
+
+    /* ── Botão busca mobile ── */
+    #btn-busca-mobile { display: flex; }
+
+    /* ── Barra de busca: escondida, aparece em overlay ── */
+    .search-box {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        width: 100%;
+        border-radius: 0;
+        padding: 12px 16px;
+        background: #0a0a0f;
+        border: none;
+        border-bottom: 2px solid var(--cor-destaque);
+        z-index: 1200;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    .search-box.busca-aberta { display: flex; }
+
+    /* ── Header ── */
+    .header-main-row {
+        padding: 10px 16px;
+        gap: 10px;
+        flex-wrap: nowrap;
+    }
+
+    .header-logo {
+        position: static;
+        transform: none;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+    }
+
+    .header-logo img { max-height: 50px; }
+
+    .account-text { display: none; }
+    .icon-user { font-size: 22px; }
+    .user-actions { gap: 14px; }
+
+    #btn-hamburger { display: flex; }
+
+    /* ── Nav: drawer lateral ── */
+    .header-nav-bar {
+        position: fixed;
+        top: 0; left: -100%;
+        width: 78vw; max-width: 300px;
+        height: 100dvh;
+        background: #0a0a0f;
+        border-right: 1px solid rgba(255,255,255,0.08);
+        z-index: 1000;
+        padding: 80px 0 40px;
+        transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 4px 0 30px rgba(0,0,0,0.5);
+        overflow-y: auto;
+    }
+
+    .header-nav-bar.menu-aberto { left: 0; }
+
+    .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 0;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+        padding: 0;
+    }
+
+    .nav-links li {
+        width: 100%;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 16px 28px;
+        font-size: 15px;
+        letter-spacing: 0.5px;
+    }
+
+    .nav-links a:hover {
+        background: rgba(37, 99, 235, 0.12);
+        color: var(--cor-destaque-brilho);
+    }
+
+    /* ── Announcement ── */
+    .top-announcement-bar { padding: 6px 12px; }
+    .announcement-text { font-size: 10px; }
+
+    /* ── Hero ── */
+    .hero-banner {
+        height: 55vh;
+        min-height: 300px;
+        max-height: 460px;
+        padding: 0 20px;
+    }
+
+    .hero-title { font-size: clamp(1.5rem, 6vw, 2.2rem); }
+    .hero-description { font-size: 0.9rem; }
+    .hero-btn { padding: 12px 24px; font-size: 14px; }
+
+    /* ── Main ── */
+    main { margin: 20px auto; padding: 0 14px; }
+    h1 { font-size: clamp(1.3rem, 5vw, 1.8rem); margin-bottom: 20px; }
+
+    /* ── Carrossel ── */
+    .carrossel-container { overflow: hidden; }
+    .carrossel-track { gap: 12px; padding-bottom: 8px; }
+
+    .tenis-card, .card {
+        min-width: 155px;
+        max-width: 172px;
+    }
+
+    .tenis-card img, .card img {
+        width: 100%;
+        height: 130px;
+        object-fit: cover;
+    }
+
+    .tenis-info h4, .card-info h4 { font-size: 11.5px; }
+    .tenis-preco, .preco { font-size: 13px; }
+    .btn-adicionar { font-size: 11px; padding: 7px 8px; }
+    .btn-carrossel { width: 28px; height: 28px; font-size: 13px; }
+
+    /* ── Carrinho ── */
+    .carrinho-container { padding: 0 14px; margin: 20px auto; }
+    .carrinho-wrapper { flex-direction: column; gap: 20px; }
+    .lista-carrinho { min-width: unset; }
+    .resumo-carrinho { min-width: unset; position: static !important; }
+
+    .item-carrinho {
+        flex-wrap: wrap;
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .item-carrinho img { width: 58px; height: 58px; }
+
+    /* ── Modais ── */
+    .modal-pagamento-box { padding: 20px 16px; max-height: 92vh; }
+    .metodos-pagamento { grid-template-columns: 1fr; }
+    .linha-campos { grid-template-columns: 1fr; }
+    .modal-criar-conta-box { padding: 26px 18px; }
+
+    .timer-pagamento-box {
+        flex-direction: column;
+        text-align: center;
+        gap: 4px;
+    }
+
+    /* ── Dropdown busca ── */
+    #busca-dropdown {
+        left: 8px !important;
+        width: calc(100vw - 16px) !important;
+        top: 60px !important;
+    }
+
+    /* ── Footer ── */
+    .rodape { padding: 28px 16px; text-align: center; }
+
+    /* ── Account grid ── */
+    .account-grid { grid-template-columns: 1fr !important; }
+
+    /* ── Selos ── */
+    .sobre-selos { flex-direction: column; gap: 16px; }
+}
+
+/* ════════════ MOBILE PEQUENO: até 480px ═══════════════════════ */
+@media (max-width: 480px) {
+
+    .header-logo img { max-height: 42px; }
+
+    .hero-banner { height: 48vh; min-height: 260px; }
+    .hero-title { font-size: 1.4rem; }
+
+    .tenis-card, .card { min-width: 140px; max-width: 152px; }
+    .tenis-card img, .card img { height: 115px; }
+    .tenis-info h4 { font-size: 10.5px; }
+
+    .item-carrinho img { width: 50px; height: 50px; }
+    .resumo-carrinho { width: 100%; }
+    .btn-finalizar { width: 100%; }
+
+    .modal-pagamento-box,
+    .modal-criar-conta-box { padding: 16px 12px; }
+
+    #timer-pagamento { font-size: 18px; }
+}
+
+/* ─── Força desktop a sempre mostrar busca e esconder hambúrguer ── */
+@media (min-width: 769px) {
+    #btn-busca-mobile { display: none !important; }
+    #btn-hamburger    { display: none !important; }
+    .search-box       { display: flex !important; position: relative !important;
+                        top: auto !important; left: auto !important; right: auto !important;
+                        width: 300px !important; border-radius: 50px !important;
+                        background: rgba(255,255,255,0.06) !important;
+                        border: 1.5px solid rgba(255,255,255,0.15) !important;
+                        padding: 8px 14px !important; }
+}
+

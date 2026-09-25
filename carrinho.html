@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -100,12 +100,37 @@
     </div>
 </main>
 
+<!-- Modal: Criar Conta (aparece quando não está logado) -->
+<div id="modal-criar-conta" style="display: none;">
+    <div class="modal-criar-conta-box">
+        <button type="button" class="btn-x-pagamento" onclick="document.getElementById('modal-criar-conta').style.display='none'" aria-label="Fechar" title="Fechar">&times;</button>
+
+        <div class="criar-conta-icon">🛍️</div>
+        <h2>Quase lá!</h2>
+        <p class="subtitulo-pagamento">Para finalizar sua compra, você precisa ter uma conta. É rápido e gratuito!</p>
+
+        <div class="criar-conta-acoes">
+            <a href="cadastro.html" class="btn-criar-conta-modal">
+                ✨ Criar minha conta
+            </a>
+            <a href="login.html" class="btn-login-modal">
+                Já tenho conta — Entrar
+            </a>
+        </div>
+    </div>
+</div>
+
 <div id="modal-pagamento" style="display: none;">
     <div class="modal-pagamento-box">
         <button type="button" class="btn-x-pagamento" onclick="fecharPagamento()" aria-label="Fechar pagamento" title="Fechar">&times;</button>
 
         <h2>Forma de pagamento</h2>
         <p class="subtitulo-pagamento">Escolha uma forma de pagamento para continuar.</p>
+
+        <div class="timer-pagamento-box">
+            <span id="timer-pagamento">⏱ 10:00</span>
+            <span class="timer-label">Tempo restante para pagar</span>
+        </div>
 
         <div class="valor-pagamento-box">
             <span>Total do pedido</span>
@@ -231,5 +256,7 @@
     });
 </script>
 
+<script src="busca.js"></script>
+<script src="mobile.js"></script>
 </body>
 </html>
