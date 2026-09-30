@@ -1,132 +1,199 @@
-/**
- * mobile.js — Menu hambúrguer, busca mobile e ajustes para celular.
- * Funciona em todas as páginas do projeto.
- */
-
 (function () {
     'use strict';
 
-    function iniciarMenuMobile() {
-        const header = document.querySelector('.topo-site');
-        if (!header) return;
+    function inicializarTema() {
+        const temaSalvo = localStorage.getItem('temaCulture') || 'claro';
+        aplicarTema(temaSalvo);
+    }
 
-        const navBar = header.querySelector('.header-nav-bar');
-        const headerRow = header.querySelector('.header-main-row');
-        if (!navBar || !headerRow) return;
+    function aplicarTema(tema) {
+        document.documentElement.setAttribute('data-theme', tema);
+        document.body.setAttribute('data-theme', tema);
+        localStorage.setItem('temaCulture', tema);
 
-        // Evitar duplicação ao recarregar
-        if (document.getElementById('btn-hamburger')) return;
-
-        // ─── Botão de busca mobile (ícone de lupa) ────────────────────────────
-        const btnBusca = document.createElement('button');
-        btnBusca.id = 'btn-busca-mobile';
-        btnBusca.setAttribute('aria-label', 'Buscar');
-        btnBusca.innerHTML = '🔍';
-
-        // ─── Botão hambúrguer (3 linhas → X) ─────────────────────────────────
-        const btnHamburger = document.createElement('button');
-        btnHamburger.id = 'btn-hamburger';
-        btnHamburger.setAttribute('aria-label', 'Abrir menu');
-        btnHamburger.setAttribute('aria-expanded', 'false');
-        btnHamburger.innerHTML = '<span></span><span></span><span></span>';
-
-        // Insere na ordem certa: busca → hamburger (à direita do header)
-        headerRow.appendChild(btnBusca);
-        headerRow.appendChild(btnHamburger);
-
-        // ─── Overlay escuro do menu ───────────────────────────────────────────
-        const overlay = document.createElement('div');
-        overlay.id = 'menu-mobile-overlay';
-        document.body.appendChild(overlay);
-
-        // ─── Lógica: abrir/fechar menu ────────────────────────────────────────
-        function abrirMenu() {
-            navBar.classList.add('menu-aberto');
-            btnHamburger.classList.add('ativo');
-            btnHamburger.setAttribute('aria-expanded', 'true');
-            overlay.classList.add('visivel');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function fecharMenu() {
-            navBar.classList.remove('menu-aberto');
-            btnHamburger.classList.remove('ativo');
-            btnHamburger.setAttribute('aria-expanded', 'false');
-            overlay.classList.remove('visivel');
-            document.body.style.overflow = '';
-        }
-
-        btnHamburger.addEventListener('click', () => {
-            navBar.classList.contains('menu-aberto') ? fecharMenu() : abrirMenu();
-        });
-
-        overlay.addEventListener('click', fecharMenu);
-
-        // Fecha ao clicar num link dentro do menu
-        navBar.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', fecharMenu);
-        });
-
-        // ESC fecha o menu
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                fecharMenu();
-                fecharBusca();
-            }
-        });
-
-        // ─── Lógica: abrir/fechar barra de busca mobile ───────────────────────
-        const searchBox = document.querySelector('.search-box');
-        const campoBusca = document.getElementById('campo-busca');
-
-        function abrirBusca() {
-            if (!searchBox) return;
-            searchBox.classList.add('busca-aberta');
-            if (campoBusca) campoBusca.focus();
-            btnBusca.innerHTML = '✕';
-            btnBusca.setAttribute('aria-label', 'Fechar busca');
-        }
-
-        function fecharBusca() {
-            if (!searchBox) return;
-            searchBox.classList.remove('busca-aberta');
-            if (campoBusca) campoBusca.value = '';
-            btnBusca.innerHTML = '🔍';
-            btnBusca.setAttribute('aria-label', 'Buscar');
-            // Fecha o dropdown de resultados se existir
-            const dropdown = document.getElementById('busca-dropdown');
-            if (dropdown) dropdown.style.display = 'none';
-        }
-
-        btnBusca.addEventListener('click', () => {
-            searchBox?.classList.contains('busca-aberta') ? fecharBusca() : abrirBusca();
-        });
-
-        // Fecha a busca ao clicar fora
-        document.addEventListener('click', (e) => {
-            if (
-                searchBox &&
-                searchBox.classList.contains('busca-aberta') &&
-                !searchBox.contains(e.target) &&
-                e.target !== btnBusca
-            ) {
-                fecharBusca();
-            }
-        });
-
-        // ─── Garante que em desktop a searchBox sempre esteja visível ─────────
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768 && searchBox) {
-                searchBox.classList.remove('busca-aberta');
-                searchBox.style.display = '';
-                fecharMenu();
+        const botoesTema = document.querySelectorAll('.btn-theme-toggle, #btn-toggle-theme');
+        botoesTema.forEach(btn => {
+            if (tema === 'escuro') {
+                btn.innerHTML = '<span class="theme-icon">☀️</span> <span class="theme-label-text">Claro</span>';
+                btn.setAttribute('title', 'Ativar Modo Claro');
+                btn.setAttribute('aria-label', 'Ativar Modo Claro');
+            } else {
+                btn.innerHTML = '<span class="theme-icon">🌙</span> <span class="theme-label-text">Escuro</span>';
+                btn.setAttribute('title', 'Ativar Modo Escuro');
+                btn.setAttribute('aria-label', 'Ativar Modo Escuro');
             }
         });
     }
 
+    function alternarTema() {
+        const temaAtual = localStorage.getItem('temaCulture') || 'claro';
+        const novoTema = temaAtual === 'escuro' ? 'claro' : 'escuro';
+        aplicarTema(novoTema);
+    }
+
+    function atualizarHeaderUsuarioGlobal() {
+        const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+        const accountLinks = document.querySelectorAll('.account-link, #area-login-topo, #user-account-link');
+        const drawerUserLinks = document.querySelectorAll('.drawer-user-link');
+
+        accountLinks.forEach(link => {
+            if (usuarioLogado && usuarioLogado.nome) {
+                const primeiroNome = usuarioLogado.nome.split(' ')[0];
+                const destino = usuarioLogado.email === 'admin@loja.com' ? 'admin.html' : 'minha-conta.html';
+                link.href = destino;
+                link.setAttribute('title', 'Minha Conta (' + primeiroNome + ')');
+
+                const fotoSalva = localStorage.getItem('avatar_' + usuarioLogado.email) || localStorage.getItem('userFoto');
+                const avatarHTML = fotoSalva
+                    ? '<img src="' + fotoSalva + '" alt="Avatar" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 2px solid var(--cor-destaque); flex-shrink: 0;">'
+                    : '<span class="icon-user">👤</span>';
+
+                link.innerHTML = avatarHTML;
+            } else {
+                link.href = 'login.html';
+                link.setAttribute('title', 'Entrar ou Cadastrar');
+                link.innerHTML = '<span class="icon-user">👤</span>';
+            }
+        });
+
+        drawerUserLinks.forEach(link => {
+            if (usuarioLogado && usuarioLogado.nome) {
+                const primeiroNome = usuarioLogado.nome.split(' ')[0];
+                const destino = usuarioLogado.email === 'admin@loja.com' ? 'admin.html' : 'minha-conta.html';
+                link.href = destino;
+                link.innerHTML = '👤 Minha Conta (' + primeiroNome + ')';
+            } else {
+                link.href = 'login.html';
+                link.innerHTML = '👤 Entrar / Cadastrar';
+            }
+        });
+
+        const carrinho = JSON.parse(localStorage.getItem('carrinhoCulture')) || [];
+        const badges = document.querySelectorAll('.cart-badge, #contador-carrinho');
+        const totalItens = carrinho.reduce((acc, item) => acc + (Number(item.quantidade) || 1), 0);
+        badges.forEach(badge => badge.innerText = totalItens);
+    }
+
+    function garantirEstruturaDrawer() {
+        let drawer = document.getElementById('menu-drawer');
+        if (!drawer) {
+            drawer = document.createElement('aside');
+            drawer.id = 'menu-drawer';
+            drawer.className = 'menu-drawer-sidebar';
+            drawer.innerHTML = `
+                <div class="drawer-header">
+                    <div class="drawer-logo">
+                        <img src="imagens/logo.png" alt="Culture.COO">
+                    </div>
+                    <button id="btn-fechar-drawer" class="btn-fechar-drawer" aria-label="Fechar Menu">✕</button>
+                </div>
+                <div class="drawer-body">
+                    <div class="drawer-section-title">Categorias</div>
+                    <ul class="drawer-links">
+                        <li><a href="index.html">🏠 Início</a></li>
+                        <li><a href="tenis.html">👟 Tênis</a></li>
+                        <li><a href="blusas-jaquetas.html">🧥 Blusas & Jaquetas</a></li>
+                        <li><a href="camisas.html">👕 Camisas</a></li>
+                        <li><a href="calcas-shorts.html">👖 Calças & Shorts</a></li>
+                        <li><a href="contato.html">💬 Suporte & Contato</a></li>
+                    </ul>
+                    <div class="drawer-section-title">Minha Conta</div>
+                    <ul class="drawer-links">
+                        <li><a href="login.html" class="drawer-user-link">👤 Entrar / Minha Conta</a></li>
+                        <li><a href="carrinho.html">🛒 Meu Carrinho</a></li>
+                    </ul>
+                    <div class="drawer-footer">
+                        <button class="btn-theme-toggle drawer-theme-btn" type="button">
+                            <span class="theme-icon">🌙</span>
+                            <span class="theme-label-text">Tema</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(drawer);
+        }
+
+        let overlay = document.getElementById('menu-mobile-overlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'menu-mobile-overlay';
+            document.body.appendChild(overlay);
+        }
+
+        return { drawer, overlay };
+    }
+
+    function iniciarComponentesHeader() {
+        inicializarTema();
+        atualizarHeaderUsuarioGlobal();
+
+        const { drawer, overlay } = garantirEstruturaDrawer();
+        const btnHamburger = document.getElementById('btn-hamburger') || document.querySelector('.btn-hamburger');
+        const btnFecharDrawer = document.getElementById('btn-fechar-drawer');
+
+        const botoesTema = document.querySelectorAll('.btn-theme-toggle, #btn-toggle-theme');
+        botoesTema.forEach(btn => {
+            btn.onclick = (e) => {
+                e.preventDefault();
+                alternarTema();
+            };
+        });
+
+        function abrirDrawer() {
+            drawer.classList.add('menu-aberto');
+            if (btnHamburger) {
+                btnHamburger.classList.add('ativo');
+                btnHamburger.setAttribute('aria-expanded', 'true');
+            }
+            overlay.classList.add('visivel');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function fecharDrawer() {
+            drawer.classList.remove('menu-aberto');
+            if (btnHamburger) {
+                btnHamburger.classList.remove('ativo');
+                btnHamburger.setAttribute('aria-expanded', 'false');
+            }
+            overlay.classList.remove('visivel');
+            document.body.style.overflow = '';
+        }
+
+        if (btnHamburger) {
+            btnHamburger.onclick = (e) => {
+                e.stopPropagation();
+                if (drawer.classList.contains('menu-aberto')) {
+                    fecharDrawer();
+                } else {
+                    abrirDrawer();
+                }
+            };
+        }
+
+        if (btnFecharDrawer) {
+            btnFecharDrawer.onclick = fecharDrawer;
+        }
+
+        if (overlay) {
+            overlay.onclick = fecharDrawer;
+        }
+
+        drawer.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', fecharDrawer);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                fecharDrawer();
+            }
+        });
+    }
+
+    inicializarTema();
+
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', iniciarMenuMobile);
+        document.addEventListener('DOMContentLoaded', iniciarComponentesHeader);
     } else {
-        iniciarMenuMobile();
+        iniciarComponentesHeader();
     }
 })();

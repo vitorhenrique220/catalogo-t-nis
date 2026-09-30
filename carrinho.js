@@ -1,7 +1,7 @@
 let metodoSelecionado = 'credito';
 let bandeiraSelecionada = '';
 let timerPagamento = null;
-let segundosRestantes = 600; // 10 minutos
+let segundosRestantes = 600;
 
 function atualizarTopoUsuario() {
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
@@ -174,7 +174,6 @@ function finalizarCompra() {
         return;
     }
 
-    // Verificar se o usuário está logado
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     if (!usuarioLogado || !usuarioLogado.nome) {
         document.getElementById('modal-criar-conta').style.display = 'flex';
@@ -346,7 +345,7 @@ function simularPagamento() {
 
     status.style.color = '#168a35';
     status.innerText = '✓ Compra finalizada com sucesso!';
-    
+
     setTimeout(() => {
         localStorage.removeItem('carrinhoCulture');
         fecharPagamento();

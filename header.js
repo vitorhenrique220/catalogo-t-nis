@@ -4,26 +4,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (navUsuario) {
         if (usuarioLogado && usuarioLogado.nome) {
-           
             const primeiroNome = usuarioLogado.nome.split(' ')[0];
+            const destino = usuarioLogado.email === 'admin@loja.com' ? 'admin.html' : 'minha-conta.html';
+            const fotoSalva = localStorage.getItem('avatar_' + usuarioLogado.email) || localStorage.getItem('userFoto');
 
-            navUsuario.innerHTML = `
-                <a href="minha-conta.html" style="color: #ffffff; text-decoration: none; display: flex; align-items: center; gap: 8px;">
-                    <div style="width: 28px; height: 28px; background-color: #0088ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; color: #ffffff;">
-                        ${primeiroNome.charAt(0).toUpperCase()}
-                    </div>
-                    <div style="text-align: left; line-height: 1.2;">
-                        <span style="font-size: 0.85rem; color: #ffffff;">Olá, <strong style="color: #0088ff;">${primeiroNome}</strong></span><br>
-                        <span style="font-size: 0.75rem; color: #a1a1aa;">Minha Conta</span>
-                    </div>
-                </a>
-            `;
+            if (fotoSalva) {
+                navUsuario.innerHTML = `
+                    <a href="${destino}" title="Minha Conta (${primeiroNome})" class="account-link">
+                        <img src="${fotoSalva}" alt="Avatar" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 2px solid var(--cor-destaque);">
+                    </a>
+                `;
+            } else {
+                navUsuario.innerHTML = `
+                    <a href="${destino}" title="Minha Conta (${primeiroNome})" class="account-link">
+                        <span class="icon-user">👤</span>
+                    </a>
+                `;
+            }
         } else {
-           
             navUsuario.innerHTML = `
-                <a href="login.html" style="color: #ffffff; text-decoration: none; font-size: 0.85rem; text-align: left; line-height: 1.2;">
-                    <strong>Olá! Faça login</strong><br>
-                    <span style="color: #a1a1aa; font-size: 0.75rem;">Ou cadastre-se</span>
+                <a href="login.html" title="Entrar ou Cadastrar" class="account-link">
+                    <span class="icon-user">👤</span>
                 </a>
             `;
         }

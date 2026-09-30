@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     const loginForm = document.getElementById('loginForm');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
@@ -7,17 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const eyeIcon = document.getElementById('eyeIcon');
     const errorAlert = document.getElementById('errorAlert');
 
-  
     if (togglePasswordBtn && passwordInput && eyeIcon) {
         togglePasswordBtn.addEventListener('click', () => {
             const isPassword = passwordInput.getAttribute('type') === 'password';
             passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
-            
+
             eyeIcon.classList.toggle('fa-eye', !isPassword);
             eyeIcon.classList.toggle('fa-eye-slash', isPassword);
         });
     }
-
 
     if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
@@ -28,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             hideError();
 
-            
             if (!email || !password) {
                 showError('Por favor, preencha todos os campos.');
                 return;
@@ -39,25 +36,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            
             const usuariosSalvos = JSON.parse(localStorage.getItem('usuariosLojaTenis')) || [];
 
-          
             const eAdmin = (email === 'admin@loja.com' && password === '123456');
             const usuarioEncontrado = usuariosSalvos.find(u => u.email === email && u.senha === password);
 
             if (eAdmin || usuarioEncontrado) {
-               
+
                 const dadosSessao = {
                     nome: eAdmin ? 'Administrador' : usuarioEncontrado.nome,
                     email: email
                 };
-                
+
                 localStorage.setItem('usuarioLogado', JSON.stringify(dadosSessao));
 
                 showSuccess('Login realizado com sucesso! Redirecionando...');
 
-                
                 setTimeout(() => {
                     if (eAdmin) {
                         window.location.href = 'admin.html';
@@ -70,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
 
     function showError(message) {
         if (!errorAlert) return;

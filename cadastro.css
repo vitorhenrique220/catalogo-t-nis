@@ -1,3 +1,32 @@
+:root,
+[data-theme="claro"] {
+    --bg-pagina: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-input: #f8fafc;
+    --cor-texto: #0f172a;
+    --cor-texto-secundario: #64748b;
+    --cor-destaque: #2563eb;
+    --cor-destaque-hover: #1d4ed8;
+    --cor-destaque-brilho: #2563eb;
+    --cor-destaque-suave: rgba(37, 99, 235, 0.08);
+    --cor-borda: #e2e8f0;
+    --sombra-card: 0 4px 20px -2px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="escuro"] {
+    --bg-pagina: #090a0f;
+    --bg-card: #13141f;
+    --bg-input: #1a1c29;
+    --cor-texto: #f8fafc;
+    --cor-texto-secundario: #94a3b8;
+    --cor-destaque: #3b82f6;
+    --cor-destaque-hover: #60a5fa;
+    --cor-destaque-brilho: #38bdf8;
+    --cor-destaque-suave: rgba(59, 130, 246, 0.14);
+    --cor-borda: #232738;
+    --sombra-card: 0 6px 24px -4px rgba(0, 0, 0, 0.6);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -11,21 +40,21 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: var(--bg-pagina, #000000);
-    color: var(--cor-texto, #ffffff);
+    background-color: var(--bg-pagina, #f8fafc);
+    color: var(--cor-texto, #0f172a);
     padding: 20px;
     -webkit-font-smoothing: antialiased;
 }
 
 .register-card {
-    background: var(--bg-card, #0d0d12);
+    background: var(--bg-card, #ffffff);
     width: 100%;
     max-width: 440px;
     border-radius: 12px;
     padding: 36px 40px;
-    border: 1px solid var(--cor-borda, #1a1a24);
-    color: var(--cor-texto, #ffffff);
-    box-shadow: var(--sombra-card, 0 10px 30px -10px rgba(0, 0, 0, 0.8));
+    border: 1px solid var(--cor-borda, #e2e8f0);
+    color: var(--cor-texto, #0f172a);
+    box-shadow: var(--sombra-card, 0 10px 30px -10px rgba(0, 0, 0, 0.08));
 }
 
 .register-header {
@@ -43,7 +72,7 @@ body {
     border: 1px solid var(--cor-borda, #1a1a24);
     border-radius: 10px;
     font-size: 20px;
-    color: var(--cor-destaque-brilho, #3b82f6); 
+    color: var(--cor-destaque-brilho, #3b82f6);
     margin-bottom: 12px;
 }
 
@@ -226,7 +255,7 @@ body {
 
 .terms-option input {
     margin-top: 2px;
-    accent-color: var(--cor-destaque, #2563eb); 
+    accent-color: var(--cor-destaque, #2563eb);
     cursor: pointer;
 }
 
@@ -280,8 +309,6 @@ body {
     text-decoration: underline;
 }
 
-
-
 .register-card {
     position: relative;
 }
@@ -316,8 +343,6 @@ body {
     color: #ffffff;
     transform: translateX(-3px);
 }
-
-
 
 @media (max-width: 600px) {
     body {

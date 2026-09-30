@@ -12,6 +12,7 @@
 <body>
 
 <header class="topo-site">
+
     <div class="top-announcement-bar">
         <button class="arrow-btn" aria-label="Anterior">&lt;</button>
         <span class="announcement-text">FRETE GRÁTIS PARA TODO O BRASIL</span>
@@ -19,13 +20,14 @@
     </div>
 
     <div class="header-main-row">
+
         <div class="search-box">
             <input type="text" placeholder="O que você está buscando?" id="campo-busca">
             <button class="search-btn" onclick="executarBusca()" aria-label="Buscar">🔍</button>
         </div>
 
         <div class="header-logo">
-            <a href="index.html"><img src="imagens/logo.png" alt="Culture.COO" class="logo"></a> 
+            <a href="index.html"><img src="imagens/logo.png" alt="Culture.COO" class="logo"></a>
         </div>
 
         <div class="user-actions">
@@ -43,6 +45,11 @@
                     <span class="cart-badge" id="contador-carrinho">0</span>
                 </div>
             </a>
+
+            <button id="btn-toggle-theme" class="btn-theme-toggle" type="button" title="Mudar Tema" aria-label="Mudar Tema">
+                <span class="theme-icon">🌙</span>
+                <span class="theme-label-text">Tema</span>
+            </button>
         </div>
     </div>
 

@@ -21,11 +21,10 @@
     <main class="carrinho-container">
         <h1>Painel de Controle</h1>
 
-        <!-- Seção de Usuários -->
         <section class="sobre-nos-home">
             <h3>Cadastrar Novo Usuário</h3>
             <div id="alerta-usuario" class="alerta-box"></div>
-            
+
             <form id="form-cadastrar-usuario">
                 <div class="form-grid">
                     <div class="form-group">
@@ -57,11 +56,10 @@
             </table>
         </section>
 
-        <!-- Seção de Produtos -->
         <section class="sobre-nos-home espaco-topo">
             <h3>Cadastrar Novo Tênis</h3>
             <div id="alerta-admin" class="alerta-box"></div>
-            
+
             <form id="form-cadastrar-produto">
                 <div class="form-grid">
                     <div class="form-group">
@@ -95,7 +93,6 @@
         </section>
     </main>
 
-    <!-- Modal de Confirmação -->
     <div id="custom-modal" class="modal-overlay" style="display: none;">
         <div class="modal-box">
             <h4>Confirmação</h4>
@@ -231,7 +228,7 @@
 
         function excluirUsuario(index) {
             let usuariosSalvos = JSON.parse(localStorage.getItem('usuariosLojaTenis')) || [];
-            
+
             if (usuariosSalvos[index]) {
                 const nomeUsuario = usuariosSalvos[index].nome;
                 mostrarConfirmacao(`Tem certeza que deseja remover "${nomeUsuario}"?`, () => {

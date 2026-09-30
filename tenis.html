@@ -14,52 +14,58 @@
 
     <header class="topo-site">
 
-        <div class="top-announcement-bar">
-            <button class="arrow-btn" aria-label="Anterior">&lt;</button>
-            <span class="announcement-text">FRETE GRÁTIS PARA TODO O BRASIL</span>
-            <button class="arrow-btn" aria-label="Próximo">&gt;</button>
+    <div class="top-announcement-bar">
+        <button class="arrow-btn" aria-label="Anterior">&lt;</button>
+        <span class="announcement-text">FRETE GRÁTIS PARA TODO O BRASIL</span>
+        <button class="arrow-btn" aria-label="Próximo">&gt;</button>
+    </div>
+
+    <div class="header-main-row">
+
+        <div class="search-box">
+            <input type="text" placeholder="O que você está buscando?" id="campo-busca">
+            <button class="search-btn" onclick="executarBusca()" aria-label="Buscar">🔍</button>
         </div>
 
-        <div class="header-main-row">
-            <div class="search-box">
-                <input type="text" placeholder="O que você está buscando?" id="campo-busca">
-                <button class="search-btn" onclick="executarBusca()" aria-label="Buscar">🔍</button>
-            </div>
-
-            <div class="header-logo">
-                <a href="index.html"><img src="imagens/logo.png" alt="Culture.COO" class="logo"></a>
-            </div>
-
-            <div class="user-actions">
-                <a href="login.html" class="account-link" id="user-account-link">
-                    <span class="icon-user">👤</span>
-                    <div class="account-text" id="user-account-text">
-                        <strong>Olá! Faça login</strong>
-                        <small>Ou cadastre-se</small>
-                    </div>
-                </a>
-
-                <a href="carrinho.html" class="cart-link" title="Meu Carrinho">
-                    <div class="cart-icon-wrapper">
-                        🛒
-                        <span class="cart-badge" id="contador-carrinho">0</span>
-                    </div>
-                </a>
-            </div>
+        <div class="header-logo">
+            <a href="index.html"><img src="imagens/logo.png" alt="Culture.COO" class="logo"></a>
         </div>
 
-        <nav class="header-nav-bar">
-            <div class="nav-container">
-                <ul class="nav-links">
-                    <li><a href="tenis.html">TENIS</a></li>
-                    <li><a href="blusas-jaquetas.html">BLUSAS</a></li>
-                    <li><a href="camisas.html">CAMISAS</a></li>
-                    <li><a href="calcas-shorts.html">CALCAS/SHORTS</a></li>
-                    <li><a href="contato.html">CONTATO</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+        <div class="user-actions">
+            <a href="login.html" class="account-link" id="area-login-topo">
+                <span class="icon-user">👤</span>
+                <div class="account-text">
+                    <strong>Olá! Faça login</strong>
+                    <small>Ou cadastre-se</small>
+                </div>
+            </a>
+
+            <a href="carrinho.html" class="cart-link" title="Meu Carrinho">
+                <div class="cart-icon-wrapper">
+                    🛒
+                    <span class="cart-badge" id="contador-carrinho">0</span>
+                </div>
+            </a>
+
+            <button id="btn-toggle-theme" class="btn-theme-toggle" type="button" title="Mudar Tema" aria-label="Mudar Tema">
+                <span class="theme-icon">🌙</span>
+                <span class="theme-label-text">Tema</span>
+            </button>
+        </div>
+    </div>
+
+    <nav class="header-nav-bar">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="tenis.html">TENIS</a></li>
+                <li><a href="blusas-jaquetas.html">BLUSAS</a></li>
+                <li><a href="camisas.html">CAMISAS</a></li>
+                <li><a href="calcas-shorts.html">CALCAS/SHORTS</a></li>
+                <li><a href="contato.html">CONTATO</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
 
     <main>
         <h1>Mais Comprados</h1>
@@ -598,8 +604,6 @@
                     </div>
                 </div>
 
-
-
                 <div class="tenis-card">
                     <img src="https://acdn-us.mitiendanube.com/stores/003/523/005/products/tmp_b64_a0016e75-66ab-4243-b80e-58bddbf24993_3523005_3657342-e6b4908e8e2ab1423617654154447113-1024-1024.webp"
                         alt="nike air max 95" width="200">
@@ -686,8 +690,6 @@
         </div>
     </main>
 
-
-
         <footer class="rodape">
         <div class="footer-conteudo">
             <h3>Culture.coO</h3>
@@ -697,8 +699,6 @@
             <p>&copy; 2026 Culture.coO - Todos os direitos reservados.</p>
         </div>
     </footer>
-
-
 
     <script>
         function verificarUsuarioLogado() {

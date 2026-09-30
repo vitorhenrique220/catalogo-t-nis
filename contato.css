@@ -10,9 +10,6 @@ body {
     color: #ffffff !important;
 }
 
-
-
-
 .logo-site {
   font-family: 'Montserrat', 'Arial Black', sans-serif;
   font-size: 22px;
@@ -31,7 +28,6 @@ body {
   transform: scale(1.03);
 }
 
-
 .logo-site .ponto,
 .logo-site .destaque {
   color: #ff3333;
@@ -43,7 +39,6 @@ body {
     padding: 20px 40px;
     width: 100%;
 }
-
 
 * {
     margin: 0;
@@ -61,7 +56,6 @@ body {
     z-index: 1000;
 }
 
-
 .menu-container {
     width: 100%;
     display: flex;
@@ -69,15 +63,12 @@ body {
     justify-content: flex-start;
     gap: 40px;
 
-
     padding: 28px 40px;
-
 
     min-height: 80px;
 
     box-sizing: border-box;
 }
-
 
 .logo {
     font-size: 1.8rem;
@@ -88,12 +79,10 @@ body {
     letter-spacing: 1.5px;
 }
 
-
 .menu-links a {
     font-size: 1.05rem;
     font-weight: 600;
 }
-
 
 .menu-links {
     display: flex;
@@ -103,7 +92,6 @@ body {
     margin: 0;
     padding: 0;
 }
-
 
 .menu-iconos {
     display: flex;
@@ -132,8 +120,6 @@ body {
     justify-content: center;
 }
 
-
-
 .logo {
     font-size: 1.5rem;
     font-weight: 900;
@@ -142,8 +128,6 @@ body {
     text-transform: uppercase;
     letter-spacing: 1.5px;
 }
-
-
 
 .menu-links a {
     text-decoration: none;
@@ -157,8 +141,6 @@ body {
 .menu-links a.active {
     color: #e50914;
 }
-
-
 
 .icon-btn {
     background: none;
@@ -214,7 +196,6 @@ body {
     line-height: 1.6;
 }
 
-
 .contato-cards-wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -227,7 +208,6 @@ body {
         grid-template-columns: 1fr;
     }
 }
-
 
 .card-suporte-item {
     background-color: #121212;
@@ -266,7 +246,6 @@ body {
     font-weight: 700;
     margin-bottom: 10px;
 }
-
 
 .destaque-card,
 .info-texto p {

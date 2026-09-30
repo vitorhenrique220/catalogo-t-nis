@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const strengthBar = document.getElementById('strengthBar');
   const strengthText = document.getElementById('strengthText');
 
-
   document.querySelectorAll('.btn-toggle-pass').forEach(button => {
     button.addEventListener('click', () => {
       const targetId = button.getAttribute('data-target');
@@ -31,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  
   if (passwordInput && passwordStrengthDiv) {
     passwordInput.addEventListener('input', () => {
       const value = passwordInput.value;
@@ -69,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  
   if (registerForm) {
     registerForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -80,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const password = passwordInput.value;
       const confirmPassword = confirmPasswordInput.value;
 
-    
       if (!fullname || !email || !password || !confirmPassword) {
         showError('Por favor, preencha todos os campos.');
         return;
@@ -111,17 +107,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-    
       let usuariosSalvos = JSON.parse(localStorage.getItem('usuariosLojaTenis')) || [];
 
-     
       const emailExiste = usuariosSalvos.some(u => u.email === email);
       if (emailExiste || email === 'admin@loja.com') {
         showError('Este e-mail já está cadastrado.');
         return;
       }
 
-      
       usuariosSalvos.push({
         nome: fullname,
         email: email,
@@ -138,7 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
- 
   function showError(msg) {
     if (!errorAlert) return;
     errorAlert.textContent = msg;

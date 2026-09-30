@@ -15,23 +15,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const email = emailInput.value.trim();
 
-  
     if (!email) {
       showError('Por favor, digite seu e-mail.');
       return;
     }
 
-  
     if (!isValidEmail(email)) {
       showError('Por favor, digite um e-mail válido (ex: nome@dominio.com).');
       return;
     }
 
-  
     showSuccess('Instruções enviadas! Redirecionando para o login...');
     emailInput.value = '';
 
- 
     setTimeout(() => {
       window.location.href = 'login.html';
     }, 1500);
@@ -62,14 +58,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const recoveryForm = document.getElementById('recovery-form');
             const alertaBox = document.getElementById('mensagem-alerta');
 
-          
             function atualizarContador() {
                 const carrinho = JSON.parse(localStorage.getItem('carrinhoGamerVerse')) || [];
                 const totalQtd = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
                 if (cartCountHeader) cartCountHeader.textContent = totalQtd;
             }
 
-           
             function exibirMensagem(texto, tipo = 'erro') {
                 alertaBox.style.display = 'block';
                 alertaBox.style.padding = '10px';
@@ -88,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 alertaBox.textContent = texto;
             }
 
-         
             if (recoveryForm) {
                 recoveryForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
@@ -111,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             exibirMensagem(resultado.erro || 'Erro ao processar a solicitação.');
                         }
                     } catch (error) {
-                      
+
                         exibirMensagem('Instruções enviadas! Verifique sua caixa de entrada.', 'sucesso');
                     }
                 });
@@ -120,14 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
             atualizarContador();
         });
 
-
 if (recoveryForm) {
     recoveryForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const email = document.getElementById('email').value.trim();
         const btnSubmit = recoveryForm.querySelector('button[type="submit"]');
-
 
         btnSubmit.textContent = 'Enviando e-mail...';
         btnSubmit.disabled = true;

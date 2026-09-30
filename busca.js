@@ -1,12 +1,8 @@
-/**
- * busca.js — Busca global em tempo real para todas as páginas
- * Coleta produtos do DOM e exibe resultados em dropdown.
- */
+
 
 (function () {
     'use strict';
 
-    // ─── Mapa de páginas para facilitar navegação entre categorias ───────────
     const PAGINAS_PRODUTO = [
         'tenis.html',
         'blusas-jaquetas.html',
@@ -15,7 +11,6 @@
         'index.html',
     ];
 
-    // ─── Coleta todos os produtos visíveis no DOM atual ──────────────────────
     function coletarProdutosDOM() {
         const produtos = [];
         const seletoresCard = [
@@ -50,7 +45,6 @@
         return produtos;
     }
 
-    // ─── Cria e posiciona o dropdown de resultados ───────────────────────────
     function criarDropdown(input) {
         let dropdown = document.getElementById('busca-dropdown');
         if (!dropdown) {
@@ -73,7 +67,6 @@
         if (d) d.style.display = 'none';
     }
 
-    // ─── Filtra e renderiza resultados ───────────────────────────────────────
     function renderizarResultados(termo, produtos, input) {
         const dropdown = criarDropdown(input);
         posicionarDropdown(input, dropdown);
@@ -118,7 +111,6 @@
                 <button class="busca-item-btn" title="Adicionar ao carrinho">🛒</button>
             `;
 
-            // Scroll até o produto na página atual
             li.querySelector('.busca-item-info').addEventListener('click', () => {
                 esconderDropdown();
                 input.value = '';
@@ -129,7 +121,6 @@
                 }
             });
 
-            // Adicionar ao carrinho direto do resultado
             li.querySelector('.busca-item-btn').addEventListener('click', (e) => {
                 e.stopPropagation();
                 adicionarAoCarrinhoBusca(produto.nome, produto.preco, produto.img);
@@ -156,13 +147,11 @@
         dropdown.style.display = 'block';
     }
 
-    // ─── Destaca o termo buscado no nome do produto ──────────────────────────
     function destacarTermo(nome, termo) {
         const regex = new RegExp(`(${termo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
         return nome.replace(regex, '<mark>$1</mark>');
     }
 
-    // ─── Adiciona produto ao carrinho a partir do resultado de busca ─────────
     function adicionarAoCarrinhoBusca(nome, preco, imagem) {
         let carrinho = JSON.parse(localStorage.getItem('carrinhoCulture')) || [];
         const existente = carrinho.find(i => i.nome === nome);
@@ -175,7 +164,6 @@
 
         localStorage.setItem('carrinhoCulture', JSON.stringify(carrinho));
 
-        // Atualiza o contador do carrinho no header
         const contador = document.getElementById('contador-carrinho');
         if (contador) {
             const total = carrinho.reduce((acc, i) => acc + (Number(i.quantidade) || 0), 0);
@@ -185,7 +173,6 @@
         mostrarToastBusca(`"${nome}" adicionado ao carrinho!`);
     }
 
-    // ─── Toast de confirmação ────────────────────────────────────────────────
     function mostrarToastBusca(msg) {
         let toast = document.getElementById('toast-notification');
         if (!toast) {
@@ -198,16 +185,13 @@
         setTimeout(() => toast.classList.remove('show'), 3000);
     }
 
-    // ─── Redireciona para a página do produto (busca entre páginas) ──────────
     function executarBusca() {
         const input = document.getElementById('campo-busca');
         const termo = input?.value?.trim();
         if (!termo) return;
 
-        // Salva o termo para que as outras páginas possam filtrar
         sessionStorage.setItem('termoBusca', termo);
 
-        // Se já está em uma página de produtos, faz scroll para o primeiro resultado
         const produtos = coletarProdutosDOM();
         const encontrado = produtos.find(p =>
             p.nome.toLowerCase().includes(termo.toLowerCase())
@@ -219,19 +203,18 @@
             encontrado.card.classList.add('busca-highlight');
             setTimeout(() => encontrado.card.classList.remove('busca-highlight'), 2500);
         } else {
-            // Redireciona para tenis.html (página principal de produtos) com o termo
+
             window.location.href = `tenis.html?busca=${encodeURIComponent(termo)}`;
         }
     }
 
-    // ─── Inicializa a busca quando o DOM está pronto ─────────────────────────
     function init() {
         const input = document.getElementById('campo-busca');
         if (!input) return;
 
         const searchBox = input.closest('.search-box');
         if (searchBox) {
-            // Remove o onclick inline antigo do botão e substitui
+
             const btn = searchBox.querySelector('.search-btn');
             if (btn) {
                 btn.removeAttribute('onclick');
@@ -239,24 +222,20 @@
             }
         }
 
-        // Coleta os produtos disponíveis nesta página
         let produtos = [];
         setTimeout(() => {
             produtos = coletarProdutosDOM();
         }, 300);
 
-        // Atualiza a coleta após carregamento dinâmico
         window.addEventListener('load', () => {
             setTimeout(() => { produtos = coletarProdutosDOM(); }, 500);
         });
 
-        // Busca em tempo real ao digitar
         input.addEventListener('input', () => {
             if (produtos.length === 0) produtos = coletarProdutosDOM();
             renderizarResultados(input.value.trim(), produtos, input);
         });
 
-        // Enter executa a busca
         input.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
                 esconderDropdown();
@@ -268,14 +247,12 @@
             }
         });
 
-        // Fecha o dropdown ao clicar fora
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.search-box') && !e.target.closest('#busca-dropdown')) {
                 esconderDropdown();
             }
         });
 
-        // Reposicionar dropdown ao redimensionar
         window.addEventListener('resize', () => {
             const d = document.getElementById('busca-dropdown');
             if (d && d.style.display !== 'none') {
@@ -283,7 +260,6 @@
             }
         });
 
-        // Verifica se a página foi acessada com um termo de busca via URL ou sessionStorage
         const params = new URLSearchParams(window.location.search);
         const termoBusca = params.get('busca') || sessionStorage.getItem('termoBusca');
         if (termoBusca) {
@@ -292,7 +268,7 @@
             setTimeout(() => {
                 produtos = coletarProdutosDOM();
                 renderizarResultados(termoBusca, produtos, input);
-                // Tenta dar scroll ao primeiro resultado
+
                 const primeiro = produtos.find(p =>
                     p.nome.toLowerCase().includes(termoBusca.toLowerCase())
                 );
@@ -305,7 +281,6 @@
         }
     }
 
-    // Expõe executarBusca globalmente para o onclick inline das páginas antigas
     window.executarBusca = executarBusca;
 
     if (document.readyState === 'loading') {

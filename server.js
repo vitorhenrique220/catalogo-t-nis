@@ -7,7 +7,6 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -19,7 +18,6 @@ app.use(session({
     cookie: { maxAge: 3600000 }
 }));
 
-
 const db = new sqlite3.Database('./database.db', (err) => {
     if (err) {
         console.error('Erro ao conectar ao SQLite:', err.message);
@@ -27,7 +25,6 @@ const db = new sqlite3.Database('./database.db', (err) => {
         console.log('Conectado ao banco de dados SQLite.');
     }
 });
-
 
 db.serialize(() => {
     db.run(`
@@ -40,8 +37,6 @@ db.serialize(() => {
     `);
 });
 
-
-
 app.post('/api/register', async (req, res) => {
     const { nome, email, senha } = req.body;
 
@@ -50,7 +45,7 @@ app.post('/api/register', async (req, res) => {
     }
 
     try {
-        
+
         const senhaHash = await bcrypt.hash(senha, 10);
 
         const sql = `INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)`;
@@ -67,7 +62,6 @@ app.post('/api/register', async (req, res) => {
         res.status(500).json({ erro: 'Erro interno do servidor.' });
     }
 });
-
 
 app.post('/api/login', (req, res) => {
     const { email, senha } = req.body;
@@ -91,7 +85,6 @@ app.post('/api/login', (req, res) => {
             return res.status(401).json({ erro: 'E-mail ou senha incorretos.' });
         }
 
-       
         req.session.usuario = {
             id: usuario.id,
             nome: usuario.nome,
@@ -110,7 +103,6 @@ app.get('/api/me', (req, res) => {
     }
 });
 
-
 app.post('/api/logout', (req, res) => {
     req.session.destroy();
     res.json({ mensagem: 'Logout realizado com sucesso.' });
@@ -121,15 +113,13 @@ app.listen(PORT, () => {
 });
 const nodemailer = require('nodemailer');
 
-
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'seu_email_culture@gmail.com',  
-        pass: 'sua_senha_de_app_aqui'            
+        user: 'seu_email_culture@gmail.com',
+        pass: 'sua_senha_de_app_aqui'
     }
 });
-
 
 app.post('/api/esqueceu-senha', (req, res) => {
     const { email } = req.body;
@@ -138,7 +128,6 @@ app.post('/api/esqueceu-senha', (req, res) => {
         return res.status(400).json({ erro: 'Por favor, informe seu e-mail.' });
     }
 
-   
     const sql = `SELECT * FROM usuarios WHERE email = ?`;
     db.get(sql, [email], (err, usuario) => {
         if (err) {
@@ -146,13 +135,12 @@ app.post('/api/esqueceu-senha', (req, res) => {
         }
 
         if (!usuario) {
-      
+
             return res.json({ mensagem: 'Se o e-mail estiver cadastrado, as instruções foram enviadas!' });
         }
 
         const linkRedefinicao = `http://localhost:3000/redefinir-senha.html?email=${encodeURIComponent(email)}`;
 
-     
         const mailOptions = {
             from: '"GamerVerse Support" <seu_email_culture@gmail.com>',
             to: email,
@@ -170,7 +158,6 @@ app.post('/api/esqueceu-senha', (req, res) => {
             `
         };
 
-        
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
                 console.error('Erro ao enviar e-mail:', error);

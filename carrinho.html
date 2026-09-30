@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="inicio.css">
 
     <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230d0d0d'/><ellipse cx='50' cy='22' rx='20' ry='7' fill='none' stroke='%230088ff' stroke-width='5'/><path d='M68 42 C 60 34, 38 32, 30 45 C 20 60, 30 80, 52 80 C 66 80, 72 72, 72 72' fill='none' stroke='%230088ff' stroke-width='12' stroke-linecap='round' stroke-linejoin='round'/><path d='M30 48 L28 58' stroke='%230088ff' stroke-width='4' stroke-linecap='round'/><path d='M68 76 L68 84' stroke='%230088ff' stroke-width='4' stroke-linecap='round'/></svg>">  
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230d0d0d'/><ellipse cx='50' cy='22' rx='20' ry='7' fill='none' stroke='%230088ff' stroke-width='5'/><path d='M68 42 C 60 34, 38 32, 30 45 C 20 60, 30 80, 52 80 C 66 80, 72 72, 72 72' fill='none' stroke='%230088ff' stroke-width='12' stroke-linecap='round' stroke-linejoin='round'/><path d='M30 48 L28 58' stroke='%230088ff' stroke-width='4' stroke-linecap='round'/><path d='M68 76 L68 84' stroke='%230088ff' stroke-width='4' stroke-linecap='round'/></svg>">
 </head>
 
 <body>
@@ -24,22 +24,22 @@
     </div>
 
     <div class="header-main-row">
+
         <div class="search-box">
             <input type="text" placeholder="O que você está buscando?" id="campo-busca">
             <button class="search-btn" onclick="executarBusca()" aria-label="Buscar">🔍</button>
         </div>
 
         <div class="header-logo">
-            <a href="index.html"><img src="imagens/logo.png" alt="Culture.COO" class="logo"></a> 
+            <a href="index.html"><img src="imagens/logo.png" alt="Culture.COO" class="logo"></a>
         </div>
 
         <div class="user-actions">
-            
             <a href="login.html" class="account-link" id="area-login-topo">
                 <span class="icon-user">👤</span>
                 <div class="account-text">
-                    <strong style="color: #ffffff;">Olá! Faça login</strong>
-                    <small style="color: #cccccc;">Ou cadastre-se</small>
+                    <strong>Olá! Faça login</strong>
+                    <small>Ou cadastre-se</small>
                 </div>
             </a>
 
@@ -49,6 +49,11 @@
                     <span class="cart-badge" id="contador-carrinho">0</span>
                 </div>
             </a>
+
+            <button id="btn-toggle-theme" class="btn-theme-toggle" type="button" title="Mudar Tema" aria-label="Mudar Tema">
+                <span class="theme-icon">🌙</span>
+                <span class="theme-label-text">Tema</span>
+            </button>
         </div>
     </div>
 
@@ -100,7 +105,6 @@
     </div>
 </main>
 
-<!-- Modal: Criar Conta (aparece quando não está logado) -->
 <div id="modal-criar-conta" style="display: none;">
     <div class="modal-criar-conta-box">
         <button type="button" class="btn-x-pagamento" onclick="document.getElementById('modal-criar-conta').style.display='none'" aria-label="Fechar" title="Fechar">&times;</button>
