@@ -18,7 +18,13 @@
         <button class="arrow-btn" aria-label="Próximo">&gt;</button>
     </div>
 
-    <div class="header-main-row">
+        <div class="header-main-row">
+        <button id="btn-hamburger" class="btn-hamburger" aria-label="Abrir Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
         <div class="search-box">
             <input type="text" placeholder="O que você está buscando?" id="campo-busca">
             <button class="search-btn" onclick="executarBusca()" aria-label="Buscar">🔍</button>
@@ -29,7 +35,7 @@
         </div>
 
         <div class="user-actions">
-            <a href="login.html" class="account-link" id="area-login-topo">
+            <a href="login.html" class="account-link" id="area-login-topo" title="Minha Conta">
                 <span class="icon-user">👤</span>
                 <div class="account-text">
                     <strong>Olá! Faça login</strong>
