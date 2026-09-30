@@ -2932,3 +2932,42 @@ a {
         padding: 7px 4px !important;
     }
 }
+
+.produtos {
+    align-items: stretch !important;
+}
+
+.carrossel-track {
+    align-items: stretch !important;
+}
+
+.card,
+.produtos .card,
+.tenis-card {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    justify-content: space-between !important;
+}
+
+.card .info,
+.produtos .card .info,
+.tenis-card .tenis-info,
+.tenis-info {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 auto !important;
+    justify-content: space-between !important;
+}
+
+.card button,
+.card .btn-adicionar,
+.produtos .card .btn-adicionar,
+.tenis-card .btn-adicionar,
+.tenis-info .btn-adicionar,
+.btn-adicionar,
+.btn-add-carrinho {
+    margin-top: auto !important;
+    width: 100% !important;
+    align-self: stretch !important;
+}
